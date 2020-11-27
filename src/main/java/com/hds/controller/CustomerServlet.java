@@ -93,6 +93,10 @@ public class CustomerServlet extends HttpServlet
 			System.out.println("Got info");
 			configDatabase.addToDataBase(customerPojo);
 
+			List<CustomerPojo> customerList;
+			customerList = configDatabase.customerViewDB();
+
+			request.setAttribute("customerList", customerList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/customerRecords.jsp");
 			rd.forward(request, response);
 		}
