@@ -1,0 +1,578 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*     Navbar  */
+.nav {
+    height: 160px;
+    background: #fff8e9;
+}
+
+.nav div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    color: #202923;
+}
+
+.nav ul {
+    position: absolute;
+    right: 5px;
+    padding: 3cm;
+}
+
+.nav ul li {
+    padding-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.nav ul li a {
+    border: 1px solid black;
+    color: #202923;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    border-radius: 100px;
+    color: black;
+}
+
+
+/*-------------------------------------------------------------------*/
+
+
+/*      HomePage			*/
+.home {
+    background: url("../images/bg1.jpg");
+    background-size: contain;
+}
+
+
+/*      Home Page Vertical DropDown Menu     */
+#divMenu, ul, li, li li {
+    margin: 0;
+    padding: 20px;
+}
+
+#divMenu {
+    width: 250px;
+    height: 27px;
+}
+
+#divMenu ul {
+    line-height: 25px;
+}
+
+#divMenu li {
+    list-style: none;
+    position: relative;
+    background: honeydew;
+}
+
+#divMenu li li {
+    list-style: none;
+    position: relative;
+    background: honeydew;
+    left: 148px;
+    top: -27px;
+}
+
+#divMenu ul li a {
+    width: 148px;
+    height: 25px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
+    color: black;
+}
+
+#divMenu ul ul {
+    position: absolute;
+    visibility: hidden;
+    top: 27px;
+}
+
+#divMenu ul li:hover ul {
+    visibility: visible;
+}
+
+#divMenu li:hover {
+    background-color: #E0E0E0;
+}
+
+#divMenu ul li:hover ul li a:hover {
+
+}
+
+#divMenu a:hover {
+    font-weight: bold;
+}
+
+
+/*-----------------------------------------------------------------*/
+
+
+/*       About Page		*/
+.about {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.about .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+.about-content {
+    margin-left: 275px;
+}
+.about .about-content h1 {
+    text-align: center;
+    color: midnightBlue;
+    font-style: italic;
+}
+
+.about .about-content p {
+    text-align: justify;
+    color: black;
+}
+
+/*-----------------------------------------------------------*/
+
+/*       Services Page      */
+.services {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.services-content {
+    margin-left: 275px;
+}
+
+.services .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+/*---------------------------------------------------------*/
+
+/*        Contact Page              */
+.contact {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 100vh;
+}
+
+.contact .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+.contact .contact-content {
+    margin: 150px auto 0 auto;
+    width: 500px;
+    text-align: center;
+}
+
+.contact .contact-content h1 {
+    color: midnightBlue;
+    font-style: italic;
+}
+
+.contact .contact-content .address-holder {
+
+}
+
+/*------------------------------------------------------------------*/
+
+
+
+
+/*-----------------------------------------------------------------*/
+
+
+/*       LOCATION:    Phoenix Page					*/
+.phoenix {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.phoenix-content {
+    margin-left: 275px;
+}
+
+.phoenix .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/*       LOCATION:    Scottsdale Page	  */
+.scottsdale {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.scottsdale-content {
+    margin-left: 275px;
+}
+
+.scottsdale .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/*         LOCATION:     Tucson Page					*/
+.tucson {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.tucson-content {
+    margin-left: 275px;
+}
+
+.tucson .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/*           LOCATION:     Las Vegas Page	           */
+.lv {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.lv-content {
+    margin-left: 275px;
+
+}
+
+.lv .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/*            LOCATION:    Albuquerque Page					*/
+.al {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.al-content {
+    margin-left: 275px;
+}
+
+.al .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/* -------------------------------------------------------------------------------------- */
+
+
+/*            Products:    Appliances Page				*/
+.appliances {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.appliances-content {
+    margin-left: 275px;
+}
+
+.appliances .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/*            Products:    Cabinets Page				*/
+.cabinets {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.cabinets-content {
+    margin-left: 275px;
+
+}
+
+.cabinets .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+
+}
+
+
+/*             Products:     Lighting Page			*/
+.lighting {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.lighting-content {
+    margin-left: 275px;
+}
+
+.lighting .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/*             Products:      Plumbing Page			*/
+.plumbing {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.plumbing-content {
+    margin-left: 275px;
+}
+
+.plumbing .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/*             Products:     Countertops & FloorTile Page				*/
+.ct_ft {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 185vh;
+}
+
+.ct_ft-content {
+    margin-left: 275px;
+}
+
+.ct_ft .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+
+/*-----------------------------------------------------------*/
+
+
+/*             Gallery images                       */
+.gallery .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+
+.gallery-content {
+    margin-left: 275px;
+}
+/*-----------------------------------------------------------*/
+
+/*--------------------------------------------------------------*/
+
+/*              FAQs Page                            */
+.questions {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 400vh;
+}
+
+.questions .nav .div {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    font-family: 'Tangerine', serif;
+    margin-top: 1cm;
+    padding: 24px;
+    font-size: 50px;
+    /*  Header title color  */
+    color: #202923;
+}
+.questions-content {
+    margin-left: 275px;
+}
+.questions .questions-content h1 {
+    text-align: center;
+    color: midnightBlue;
+    font-style: italic;
+}
+
+.questions .questions-content p {
+    text-align: justify;
+    color: black;
+}
+
+
+
+
+
+/*              Footer    */
+footer {
+    background: #fff8e9;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin: auto;
+    color: #333;
+}
+
+footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

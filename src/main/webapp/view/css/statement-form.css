@@ -1,0 +1,28 @@
+#statement\ topAddress{
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+    width: 75%;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 5px;
+
+}
+#image{
+    width: 100px;
+}
+
+h1{
+    text-align: center;
+}
+#statement\ bottom{
+    text-align: right;
+    width: 75%;
+}
+#statement\ finePrint{
+    font-size: x-small;
+    text-align: center;
+}

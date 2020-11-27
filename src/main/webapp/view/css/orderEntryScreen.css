@@ -1,0 +1,22 @@
+table {
+    border-collapse: collapse;
+    width: 75%;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 5px;
+
+}
+
+th {
+    height: 50px;
+}
+
+#bottomTable td{
+    width: 40px;
+
+}
+#footer{
+    text-align: center;
+}

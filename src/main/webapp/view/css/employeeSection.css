@@ -1,0 +1,214 @@
+/*---------------Employee Section---------------*/
+.employeeSection{
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+
+}
+.employeeSection-content {
+    margin-left: 275px;
+}
+
+.servletList {
+    margin-left: 275px;
+}
+
+/*-----Customer Records-----*/
+.customerRecords {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+
+
+    /*    Added (11/9)    */
+    height: 150vh;
+    width: 330vh;
+}
+
+.customerRecords-content{
+    margin-left: 275px;
+}
+
+
+
+/*       Added (11/9)   */
+.customerRecords-content h1 {
+    padding-right: 100vh;
+}
+
+
+/*-----Employee Records-----*/
+.employeeRecords {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+
+
+    /*    Added (11/9)    */
+    height: 150vh;
+    width: 390vh;
+}
+
+.employeeRecords-content{
+    margin-left: 275px;
+}
+
+/*       Added (11/9)   */
+.employeeRecords-content h1 {
+    padding-right: 150vh;
+}
+
+
+/*-----Inventory-----*/
+.inventory {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+
+
+    /*    Added (11/9)    */
+    height: 150vh;
+    width: 250vh;
+}
+
+.inventory-content {
+    margin-left: 275px;
+}
+
+
+/*    Added (11/9)    */
+.inventory-content h1 {
+    padding-right: 50vh;
+}
+
+/*-----Jobs for Bid-----*/
+.jobsForBid {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+
+    /*    Added (11/9)    */
+    height: 150vh;
+
+
+}
+
+/*     Added/Change (11/9)    */
+.jobsForBid-content {
+    margin-left: 260px;
+}
+
+
+/*---Monthly Statement Form----*/
+.monthlyStatement {
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+
+}
+
+.monthlyStatement-container{
+    margin-left: 275px;
+}
+#monthlyStatement\ topAddress{
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+    width: 75%;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 5px;
+
+}
+#image{
+    width: 100px;
+}
+
+h1 {
+    text-align: center;
+}
+#monthlyStatement\ bottom{
+    text-align: right;
+    width: 75%;
+}
+#monthlyStatement\ finePrint{
+    font-size: smaller;
+    text-align: center;
+}
+
+/*-----Order Records-----*/
+.orderRecords{
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+
+    /*    Added (11/9)    */
+    height: 150vh;
+}
+.orderRecords-content{
+    margin-left: 275px;
+}
+
+
+/*-----Sale Receipt-----*/
+.saleReceipt{
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+    height: 150vh;
+}
+
+.saleReceipt-container{
+    margin-left: 275px;
+}
+table {
+    border-collapse: collapse;
+    width: 75%;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 5px;
+
+}
+
+th {
+    height: 50px;
+}
+
+#bottomTable td {
+    width: 40px;
+}
+
+/*-----Sale Summary-----*/
+.saleSummary{
+    background: url("../images/bg1.jpg");
+    background-size: cover;
+
+    /*    Added (11/9)    */
+    height: 150vh;
+}
+.saleSummary-content{
+    margin-left: 275px;
+}
+#saleSummaryTotal{
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+#saleSummaryTotal tr{
+
+}
+#saleSummaryTotal td{
+    width: 50%;
+    text-align: right;
+}
+
+/*----------------------Looping Table----------------------*/
+#recordTable {
+    /*border-style: solid;*/
+    border-collapse: collapse;
+}
+
+#recordTable tr {
+    border-spacing: 5px;
+    /*padding-bottom: 20px;*/
+}
+
+#recordTable, td {
+    border: 1px solid black;
+}
