@@ -48,6 +48,11 @@ public class AddressPojo
 
 	}
 
+	public AddressPojo(int addressId)
+	{
+		this.address_id = addressId;
+	}
+
 	// Getter Setter methods
 
 	public int getAddress_id()

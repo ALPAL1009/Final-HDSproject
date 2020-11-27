@@ -20,6 +20,11 @@ public class CustomerPojo
 	@Column(name = "AddressID")
 	private int customer_address_id;
 
+	public CustomerPojo(int customerId)
+	{
+		this.customer_id = customerId;
+	}
+
 	public int getCustomer_address_id()
 	{
 		return customer_address_id;

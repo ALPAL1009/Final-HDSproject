@@ -72,7 +72,7 @@
 
     <div class="customerRecords-content">
 
-        <h1>Customer Records<br><br></h1>
+        <h1>Edit Customer Records<br><br></h1>
 
 
         <table id="recordTable">
@@ -92,68 +92,102 @@
             <tr>
                 <%--Add new Customer--%>
                 <form action="../customerServlet" method="GET">
+                    <c:forEach var="customerList" items="${customerList}">
+
+                    <td>${customerList.customer_id}</td>
+
                     <td>
-                        <%--Empty Field--%>
+                        <label>
+                            <input type="text" name="cus_last_name"
+                                   value="${customerList.customer_last_name}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="text" name="cus_last_name" value=""/></label>
+                        <label>
+                            <input type="text" name="cus_first_name"
+                                   value="${customerList.customer_first_name}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="text" name="cus_first_name" value=""/></label>
+                        <label>
+                            <input type="text" name="cus_mi"
+                                   value="${customerList.customer_mi}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="text" name="cus_mi" value=""/></label>
+                        <label>
+                            <input type="text" name="address_street"
+                                   value="${customerList.street}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="text" name="address_street" value=""/></label>
-                    </td>
-                    <td>
-                        <label><input type="text" name="address_city" value=""/></label>
+                        <label>
+                            <input type="text" name="address_city"
+                                   value="${customerList.city}"/>
+                        </label>
                     </td>
                     <td>
                         <jsp:include page="../templates/selectState.html"></jsp:include>
                     </td>
                     <td>
-                        <label><input type="text" name="address_zip" value=""/></label>
+                        <label>
+                            <input type="text" name="address_zip"
+                                   value="${customerList.zip}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="tel" name="cus_phone_num" value=""/></label>
+                        <label>
+                            <input type="tel" name="cus_phone_num"
+                                   value="${customerList.customer_phone_num}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="email" name="cus_email" value=""/></label>
+                        <label>
+                            <input type="email" name="cus_email"
+                                   value="${customerList.customer_email}"/>
+                        </label>
                     </td>
+                        <input type="hidden" name="customerId"
+                               value="<c:out value='${customerList.customer_id}' />"/>
+                        <input type="hidden" name="addressId"
+                               value="<c:out value='${customerList.customer_address_id}' />"/>
                     <td>
-                        <input type="submit" name="Add New Customer"
-                               value="Add New Customer">
+                        <input type="submit" name="Update Customer"
+                               value="Update Customer">
                     </td>
                 </form>
             </tr>
-            <c:forEach var="customerList" items="${customerList}">
-                <tr>
-                    <td>${customerList.customer_id}</td>
-                    <td>${customerList.customer_last_name}</td>
-                    <td>${customerList.customer_first_name}</td>
-                    <td>${customerList.customer_mi}</td>
-                    <td>${customerList.street}</td>
-                    <td>${customerList.city}</td>
-                    <td>${customerList.state}</td>
-                    <td>${customerList.zip}</td>
-                    <td>${customerList.customer_phone_num}</td>
-                    <td>${customerList.customer_email}</td>
-                    <td>
-                        <form action="../customerServlet" method="POST">
-                            <input type="hidden" name="id"
-                                   value="<c:out value='${customerList.customer_id}' />"/>
-                            <input type="submit" name="Edit" value="Edit">
-                        </form>
-                    </td>
-                </tr>
+
+            <tr>
+                <td>${customerList.customer_id}</td>
+                <td>${customerList.customer_last_name}</td>
+                <td>${customerList.customer_first_name}</td>
+                <td>${customerList.customer_mi}</td>
+                <td>${customerList.street}</td>
+                <td>${customerList.city}</td>
+                <td>${customerList.state}</td>
+                <td>${customerList.zip}</td>
+                <td>${customerList.customer_phone_num}</td>
+                <td>${customerList.customer_email}</td>
+                <td>
+                    <form action="../customerServlet" method="GET">
+                        <input type="hidden" name="customerId"
+                               value="<c:out value='${customerList.customer_id}' />"/>
+                        <input type="hidden" name="addressId"
+                               value="<c:out value='${customerList.customer_address_id}' />"/>
+                        <input type="submit" name="Delete" value="Delete">
+                    </form>
+
+                </td>
+            </tr>
             </c:forEach>
+            <%--Sample layout--%>
 
         </table>
 
     </div>
 </div>
+
 
 <footer>
     <p><br><br><br></p>
