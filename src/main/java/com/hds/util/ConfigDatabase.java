@@ -292,6 +292,10 @@ public class ConfigDatabase
 	//	Employee Section
 	//________________________________
 
+	public int getNextEmployeeId()
+	{
+	}
+
 	public List employeeViewDB()
 	{
 		Transaction transaction = null;
@@ -480,6 +484,7 @@ public class ConfigDatabase
 		}
 		return productList;
 	}
+
 
 }
 
