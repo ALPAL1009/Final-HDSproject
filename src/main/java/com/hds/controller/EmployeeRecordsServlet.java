@@ -92,7 +92,7 @@ public class EmployeeRecordsServlet extends HttpServlet
 			EmployeePojo employeePojo = new EmployeePojo(employee_id, addressId, job_id, status_id, office_location_id, site_user_id, last_name,
 					first_name, mi, payRate);
 			System.out.println("Got info");
-			configDatabase.addToDataBase(customerPojo);
+			configDatabase.addToDataBase(employeePojo);
 
 			List<CustomerPojo> customerList;
 			customerList = configDatabase.customerViewDB();

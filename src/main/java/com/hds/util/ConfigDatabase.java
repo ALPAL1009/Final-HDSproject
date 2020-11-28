@@ -294,6 +294,24 @@ public class ConfigDatabase
 
 	public int getNextEmployeeId()
 	{
+		Transaction transaction = null;
+		int employee_id = 0;
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "select max(EmployeeID) from hds.employee";
+			List customerIDResult = session.createSQLQuery(queryString).list();
+			employee_id = Integer.parseInt(customerIDResult.get(0).toString()) + 1;
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return employee_id;
 	}
 
 	public List employeeViewDB()
