@@ -93,95 +93,108 @@
                 <th></th>
             </tr>
             <tr>
-                <td>
-                    <%--                    <label><input type="text" name="employeeId" value=""/></label>--%>
-                </td>
                 <form action="../employeeRecordsServlet" method="GET">
+                    <c:forEach var="employeeList" items="${employeeList}">
                     <td>
-                        <label><input type="text" name="last_name" value=""/></label>
+                    <td>${employeeList.employee_id}</td>
+                    </td>
+
+                    <td>
+                        <label>
+                            <input type="text" name="last_name"
+                                   value=""/>${employeeList.last_name}
+                        </label>
                     </td>
                     <td>
-                        <label><input type="text" name="first_name" value=""/></label>
+                        <label>
+                            <input type="text" name="first_name"
+                                   value="${employeeList.first_name}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="text" name="mi" value=""/></label>
+                        <label>
+                            <input type="text" name="mi" value="${employeeList.mi}"/>
+                        </label>
                     </td>
                     <td>
                         <jsp:include
                                 page="../templates/selectJobPosition.html"></jsp:include>
                     </td>
                     <td>
-                        <jsp:include
-                                page="../templates/selectPayRate.html"></jsp:include>
+                        <label>
+                            <input type="text" name="payRate"
+                                   value="${employeeList.payRate}"/>
+                        </label>
                     </td>
                     <td>
                         <jsp:include page="/templates/selectLocation.html"></jsp:include>
                     </td>
                     <td>
-                        <label><input type="text" name="site_user_id" value=""/></label>
+                        <label>
+                            <input type="text" name="site_user_id"
+                                   value="${employeeList.site_user_id}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="text" name="street" value=""/></label>
+                        <label>
+                            <input type="text" name="street"
+                                   value="${employeeList.street}"/>
+                        </label>
                     </td>
                     <td>
-                        <label><input type="text" name="city" value=""/></label>
+                        <label>
+                            <input type="text" name="city"
+                                   value="${employeeList.city}"/>
+                        </label>
                     </td>
                     <td>
                         <jsp:include page="../templates/selectState.html"></jsp:include>
                     </td>
-                    <td><label><input type="text" name="zip" value=""/></label>
+                    <td>
+                        <label>
+                            <input type="text" name="zip"
+                                   value="${employeeList.zip}"/>
+                        </label>
                     </td>
                     <td>
                         <jsp:include page="../templates/selectStatus.html"></jsp:include>
                     </td>
+                        <input type="hidden" name="employee_id"
+                               value="<c:out value='${employeeList.employee_id}' />"/>
+                        <input type="hidden" name="addressId"
+                               value="<c:out value='${employeeList.address_id}' />"/>
                     <td>
-                        <input type="submit" name="Add New Employee"
-                               value="Add New Employee">
+                        <input type="submit" name="Update Employee"
+                               value="Update Employee">
                     </td>
                 </form>
             </tr>
-            <c:forEach var="employeeList" items="${employeeList}">
-                <tr>
-                    <td>${employeeList.employee_id}</td>
-                    <td>${employeeList.last_name}</td>
-                    <td>${employeeList.first_name}</td>
-                    <td>${employeeList.mi}</td>
-                    <td>${employeeList.position}</td>
-                    <td>${employeeList.payRate}</td>
-                    <td>${employeeList.officeLocation}</td>
-                    <td>${employeeList.site_user_id}</td>
-                    <td>${employeeList.street}</td>
-                    <td>${employeeList.city}</td>
-                    <td>${employeeList.state}</td>
-                    <td>${employeeList.zip}</td>
-                    <td>${employeeList.status_id}</td>
-                    <td>
-                        <form action="../employeeRecordsServlet" method="POST">
-                            <input type="hidden" name="id"
-                                   value="<c:out value='${employeeList.employee_id}' />"/>
-                            <input type="submit" name="Edit" value="Edit">
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-            <%--Sample layout--%>
+
             <tr>
-                <td>{employeeList.employee_id}</td>
-                <td>{employeeList.last_name}</td>
-                <td>{employeeList.first_name}</td>
-                <td>{employeeList.mi}</td>
-                <td>{employeeList.position}</td>
-                <td>{employeeList.payRate}</td>
-                <td>{employeeList.officeLocation}</td>
-                <td>{employeeList.site_user_id}</td>
-                <td>{employeeList.street}</td>
-                <td>{employeeList.city}</td>
-                <td>{employeeList.state}</td>
-                <td>{employeeList.zip}</td>
-                <td>{employeeList.status_id}</td>
+                <td>${employeeList.employee_id}</td>
+                <td>${employeeList.last_name}</td>
+                <td>${employeeList.first_name}</td>
+                <td>${employeeList.mi}</td>
+                <td>${employeeList.position}</td>
+                <td>${employeeList.payRate}</td>
+                <td>${employeeList.officeLocation}</td>
+                <td>${employeeList.site_user_id}</td>
+                <td>${employeeList.street}</td>
+                <td>${employeeList.city}</td>
+                <td>${employeeList.state}</td>
+                <td>${employeeList.zip}</td>
+                <td>${employeeList.status_id}</td>
                 <td>
+                    <form action="../employeeRecordsServlet" method="POST">
+                        <input type="hidden" name="id"
+                               value="<c:out value='${employeeList.employee_id}' />"/>
+                        <input type="submit" name="Edit" value="Edit">
+                    </form>
                 </td>
             </tr>
+            </c:forEach>
+
+
         </table>
 
     </div>

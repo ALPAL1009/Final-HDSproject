@@ -26,7 +26,7 @@ public class CustomerServlet extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		//Populate the Customer Records from the Employee section
+		//Populate the Customer Records from the Employee page section
 		if(request.getParameter("Customer Records") != null)
 		{
 //			System.out.println("Populate customer list ");

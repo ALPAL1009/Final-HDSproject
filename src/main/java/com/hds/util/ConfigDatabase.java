@@ -2,6 +2,7 @@ package com.hds.util;
 
 import com.hds.model.AddressPojo;
 import com.hds.model.CustomerPojo;
+import com.hds.model.EmployeePojo;
 import com.hds.model.ProductPojo;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -12,7 +13,11 @@ import java.util.List;
 
 public class ConfigDatabase
 {
-	//Get the next primary key in the address table
+//________________________________
+//	Customer Section
+//________________________________
+
+//	//Get the next primary key in the address table
 	public int getNextAddressId()
 	{
 		Transaction transaction = null;
@@ -283,6 +288,143 @@ public class ConfigDatabase
 
 	}
 
+	//________________________________
+	//	Employee Section
+	//________________________________
+
+	public List employeeViewDB()
+	{
+		Transaction transaction = null;
+		List employeeList = new ArrayList<EmployeePojo>();
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT \n" +
+					"    e.EmployeeID,\n" +
+					"    e.LastName,\n" +
+					"    e.FirstName,\n" +
+					"    e.MI,\n" +
+					"    jp.JobTitle,\n" +
+					"    job.YearlySalary,\n" +
+					"    o.Name as officeLocation,\n" +
+					"    esite.SiteUserID,\n" +
+					"    a.Street,\n" +
+					"    a.City,\n" +
+					"    a.State,\n" +
+					"    a.Zip,\n" +
+					"    es.IsActive\n" +
+					"FROM\n" +
+					"    hds.employee e\n" +
+					"join hds.address a on e.AddressID = a.AddressID\n" +
+					"join hds.employeestatus es on e.StatusID = es.StatusID\n" +
+					"join hds.officelocation o on e.OfficeLocationID = o.LocationID \n" +
+					"join hds.employeesiteuser esite on e.SiteUserID = esite.SiteUserID\n" +
+					"join hds.jobposition jp on e.JobID = jp.JobPositionID\n" +
+					"join hds.job on e.JobID = job.JobID;";
+			SQLQuery query = session.createSQLQuery(queryString);
+
+			List<Object[]> rows = query.list();
+			for(Object[] row : rows)
+			{
+				EmployeePojo employee = new EmployeePojo();
+				employee.setEmployee_id(Integer.parseInt(row[0].toString()));
+				employee.setLast_name(row[1].toString());
+				employee.setFirst_name(row[2].toString());
+				employee.setMi(row[3].toString());
+				employee.setPosition(row[4].toString());
+				if(row[5] != null)
+					employee.setPayRate(Integer.parseInt(row[5].toString()));
+				employee.setOfficeLocation(row[6].toString());
+				employee.setSite_user_id(Integer.parseInt(row[7].toString()));
+				employee.setStreet(row[8].toString());
+				employee.setCity(row[9].toString());
+				employee.setState(row[10].toString());
+				employee.setZip(Integer.parseInt(row[11].toString()));
+				employee.setStatus(row[12].toString());
+				employeeList.add(employee);
+			}
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return employeeList;
+	}
+
+	public List editEmployee(int employee_id)
+	{
+		Transaction transaction = null;
+		List employeeList = new ArrayList<EmployeePojo>();
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT \n" +
+					"    e.EmployeeID,\n" +
+					"    e.LastName,\n" +
+					"    e.FirstName,\n" +
+					"    e.MI,\n" +
+					"    jp.JobTitle,\n" +
+					"    job.YearlySalary,\n" +
+					"    o.Name as officeLocation,\n" +
+					"    esite.SiteUserID,\n" +
+					"    a.Street,\n" +
+					"    a.City,\n" +
+					"    a.State,\n" +
+					"    a.Zip,\n" +
+					"    es.IsActive\n" +
+					"    a.AddressID\n" +
+					"FROM\n" +
+					"    hds.employee e\n" +
+					"join hds.address a on e.AddressID = a.AddressID\n" +
+					"join hds.employeestatus es on e.StatusID = es.StatusID\n" +
+					"join hds.officelocation o on e.OfficeLocationID = o.LocationID \n" +
+					"join hds.employeesiteuser esite on e.SiteUserID = esite.SiteUserID\n" +
+					"join hds.jobposition jp on e.JobID = jp.JobPositionID\n" +
+					"join hds.job on e.JobID = job.JobID;"+
+					"    where EmployeeID =" + employee_id;
+			SQLQuery query = session.createSQLQuery(queryString);
+
+			List<Object[]> rows = query.list();
+			for(Object[] row : rows)
+			{
+				EmployeePojo employee = new EmployeePojo();
+				employee.setEmployee_id(Integer.parseInt(row[0].toString()));
+				employee.setLast_name(row[1].toString());
+				employee.setFirst_name(row[2].toString());
+				employee.setMi(row[3].toString());
+				employee.setPosition(row[4].toString());
+				if(row[5] != null)
+					employee.setPayRate(Integer.parseInt(row[5].toString()));
+				employee.setOfficeLocation(row[6].toString());
+				employee.setSite_user_id(Integer.parseInt(row[7].toString()));
+				employee.setStreet(row[8].toString());
+				employee.setCity(row[9].toString());
+				employee.setState(row[10].toString());
+				employee.setZip(Integer.parseInt(row[11].toString()));
+				employee.setStatus(row[12].toString());
+				employee.setAddress_id(Integer.parseInt(row[13].toString()));
+				employeeList.add(employee);
+			}
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return employeeList;
+
+	}
+
+	//________________________________
+	//	Inventory Section
+	//________________________________
 	public List inventoryViewDB()
 	{
 		Transaction transaction = null;
