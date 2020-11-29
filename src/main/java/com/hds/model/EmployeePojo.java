@@ -37,7 +37,7 @@ public class EmployeePojo
 	private String mi;
 
 	@Column(name = "PhoneNum")
-	private int phone_num;
+	private String phone_num;
 
 	@Column(name = "OfficeExtension")
 	private int office_extension;
@@ -59,14 +59,14 @@ public class EmployeePojo
 
 	private int zip;
 
-	private String status;
+	private int status;
 
 	public EmployeePojo()
 	{
 	}
 
 	public EmployeePojo(int employee_id, int addressId, int job_id, int status_id, int office_location_id, int site_user_id, String last_name,
-			String first_name, String mi, int payRate)
+			String first_name, String mi, String phone_num, int office_extension, String email)
 	{
 		this.employee_id = employee_id;
 		this.address_id = addressId;
@@ -77,8 +77,9 @@ public class EmployeePojo
 		this.last_name = last_name;
 		this.first_name = first_name;
 		this.mi = mi;
-		this.payRate = payRate;
-
+		this.phone_num = phone_num;
+		this.office_extension = office_extension;
+		this.email = email;
 	}
 
 	// Getter Setter methods
@@ -173,12 +174,12 @@ public class EmployeePojo
 		this.mi = mi;
 	}
 
-	public int getPhone_num()
+	public String getPhone_num()
 	{
 		return phone_num;
 	}
 
-	public void setPhone_num(int phone_num)
+	public void setPhone_num(String phone_num)
 	{
 		this.phone_num = phone_num;
 	}
@@ -273,12 +274,12 @@ public class EmployeePojo
 		this.zip = zip;
 	}
 
-	public String getStatus()
+	public int getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus(String status)
+	public void setStatus(int status)
 	{
 		this.status = status;
 	}

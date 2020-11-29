@@ -20,21 +20,6 @@ public class CustomerPojo
 	@Column(name = "AddressID")
 	private int customer_address_id;
 
-	public CustomerPojo(int customerId)
-	{
-		this.customer_id = customerId;
-	}
-
-	public int getCustomer_address_id()
-	{
-		return customer_address_id;
-	}
-
-	public void setCustomer_address_id(int customer_address_id)
-	{
-		this.customer_address_id = customer_address_id;
-	}
-
 	@Column(name = "LastName")
 	private String customer_last_name;
 
@@ -64,8 +49,15 @@ public class CustomerPojo
 
 	private int zip;
 
+	//Constructors
+
 	public CustomerPojo()
 	{
+	}
+
+	public CustomerPojo(int customerId)
+	{
+		this.customer_id = customerId;
 	}
 
 	public CustomerPojo(int customer_id, int customer_address_id, String customer_last_name, String customer_first_name, String customer_mi,
@@ -81,7 +73,6 @@ public class CustomerPojo
 		this.customer_email = customer_email;
 	}
 
-
 	// Getter Setter methods
 
 	public int getCustomer_id()
@@ -92,6 +83,16 @@ public class CustomerPojo
 	public void setCustomer_id(int customer_id)
 	{
 		this.customer_id = customer_id;
+	}
+
+	public int getCustomer_address_id()
+	{
+		return customer_address_id;
+	}
+
+	public void setCustomer_address_id(int customer_address_id)
+	{
+		this.customer_address_id = customer_address_id;
 	}
 
 	public String getCustomer_last_name()

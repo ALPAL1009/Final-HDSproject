@@ -85,6 +85,9 @@
                 <th>Pay Rate</th>
                 <th>Office Location</th>
                 <th>Site User ID</th>
+                <th>Phone Number</th>
+                <th>Office Extension</th>
+                <th>Email</th>
                 <th>Street Address</th>
                 <th>City</th>
                 <th>State</th>
@@ -118,7 +121,16 @@
                         <jsp:include page="/templates/selectLocation.html"></jsp:include>
                     </td>
                     <td>
-                        <label><input type="text" name="site_user_id" value=""/></label>
+<%--                        <label><input type="text" name="site_user_id" value=""/></label>--%>
+                    </td>
+                    <td>
+                        <label><input type="text" name="phone_num" value=""/></label>
+                    </td>
+                    <td>
+                        <label><input type="text" name="office_extension" value=""/></label>
+                    </td>
+                    <td>
+                        <label><input type="text" name="email" value=""/></label>
                     </td>
                     <td>
                         <label><input type="text" name="street" value=""/></label>
@@ -150,6 +162,9 @@
                     <td>${employeeList.payRate}</td>
                     <td>${employeeList.officeLocation}</td>
                     <td>${employeeList.site_user_id}</td>
+                    <td>${employeeList.phone_num}</td>
+                    <td>${employeeList.office_extension}</td>
+                    <td>${employeeList.email}</td>
                     <td>${employeeList.street}</td>
                     <td>${employeeList.city}</td>
                     <td>${employeeList.state}</td>
@@ -174,6 +189,9 @@
                 <td>{employeeList.payRate}</td>
                 <td>{employeeList.officeLocation}</td>
                 <td>{employeeList.site_user_id}</td>
+                <td>{employeeList.phone_num}</td>
+                <td>{employeeList.office_extension}</td>
+                <td>{employeeList.email}</td>
                 <td>{employeeList.street}</td>
                 <td>{employeeList.city}</td>
                 <td>{employeeList.state}</td>

@@ -21,9 +21,23 @@ public class EmployeeSiteUserPojo {
     private String password;
 
     @Column(name = "IsAdmin")
-    private boolean is_admin;
+    private  String is_admin;
 
+    //Constructors
 
+    public EmployeeSiteUserPojo()
+    {
+    }
+
+    public EmployeeSiteUserPojo(int site_user_id, int employee_id, String username, String password, String is_admin)
+    {
+        super();
+        this.site_user_id = site_user_id;
+        this.employee_id = employee_id;
+        this.username = username;
+        this.password = password;
+        this.is_admin = is_admin;
+    }
     // Getter Setter methods
 
 
@@ -59,11 +73,13 @@ public class EmployeeSiteUserPojo {
         this.password = password;
     }
 
-    public boolean isIs_admin() {
+    public String getIs_admin()
+    {
         return is_admin;
     }
 
-    public void setIs_admin(boolean is_admin) {
+    public void setIs_admin(String is_admin)
+    {
         this.is_admin = is_admin;
     }
 }

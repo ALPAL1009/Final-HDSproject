@@ -48,7 +48,7 @@ public class ConfigDatabase
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-			String queryString = "select max(CustomerID) from hds.customer";
+			String queryString = "select max(customer.CustomerID) from hds.customer";
 			List customerIDResult = session.createSQLQuery(queryString).list();
 			customerID = Integer.parseInt(customerIDResult.get(0).toString()) + 1;
 
@@ -299,7 +299,7 @@ public class ConfigDatabase
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-			String queryString = "select max(EmployeeID) from hds.employee";
+			String queryString = "select max(employee.EmployeeID) from hds.employee";
 			List customerIDResult = session.createSQLQuery(queryString).list();
 			employee_id = Integer.parseInt(customerIDResult.get(0).toString()) + 1;
 
@@ -322,27 +322,28 @@ public class ConfigDatabase
 		{
 			session.beginTransaction();
 			String queryString = "SELECT \n" +
-					"    e.EmployeeID,\n" +
-					"    e.LastName,\n" +
-					"    e.FirstName,\n" +
-					"    e.MI,\n" +
-					"    jp.JobTitle,\n" +
+					"    emp.EmployeeID,\n" +
+					"    emp.LastName,\n" +
+					"    emp.FirstName,\n" +
+					"    emp.MI,\n" +
+					"    position.JobTitle,\n" +
 					"    job.YearlySalary,\n" +
-					"    o.Name as officeLocation,\n" +
-					"    esite.SiteUserID,\n" +
-					"    a.Street,\n" +
-					"    a.City,\n" +
-					"    a.State,\n" +
-					"    a.Zip,\n" +
-					"    es.IsActive\n" +
+					"    location.Name,\n" +
+					"    emp.SiteUserID,\n" +
+					"    emp.PhoneNum,\n" +
+					"    emp.OfficeExtension,\n" +
+					"    emp.Email,\n" +
+					"    address.Street,\n" +
+					"    address.City,\n" +
+					"    address.State,\n" +
+					"    address.Zip,\n" +
+					"    emp.StatusID\n" +
 					"FROM\n" +
-					"    hds.employee e\n" +
-					"join hds.address a on e.AddressID = a.AddressID\n" +
-					"join hds.employeestatus es on e.StatusID = es.StatusID\n" +
-					"join hds.officelocation o on e.OfficeLocationID = o.LocationID \n" +
-					"join hds.employeesiteuser esite on e.SiteUserID = esite.SiteUserID\n" +
-					"join hds.jobposition jp on e.JobID = jp.JobPositionID\n" +
-					"join hds.job on e.JobID = job.JobID;";
+					"    hds.employee emp\n" +
+					"        JOIN hds.job ON emp.JobID = job.JobID\n" +
+					"        JOIN hds.jobposition position ON job.JobID = position.JobPositionID\n" +
+					"        JOIN hds.officelocation location ON emp.OfficeLocationID = location.LocationID\n" +
+					"        JOIN hds. address ON emp.AddressID = address.AddressID;";
 			SQLQuery query = session.createSQLQuery(queryString);
 
 			List<Object[]> rows = query.list();
@@ -350,19 +351,37 @@ public class ConfigDatabase
 			{
 				EmployeePojo employee = new EmployeePojo();
 				employee.setEmployee_id(Integer.parseInt(row[0].toString()));
+				if(row[1] != null)
 				employee.setLast_name(row[1].toString());
+				if(row[2] != null)
 				employee.setFirst_name(row[2].toString());
+				if(row[3] != null)
 				employee.setMi(row[3].toString());
+				if(row[4] != null)
 				employee.setPosition(row[4].toString());
 				if(row[5] != null)
 					employee.setPayRate(Integer.parseInt(row[5].toString()));
+				if(row[6] != null)
 				employee.setOfficeLocation(row[6].toString());
+				if(row[7] != null)
 				employee.setSite_user_id(Integer.parseInt(row[7].toString()));
-				employee.setStreet(row[8].toString());
-				employee.setCity(row[9].toString());
-				employee.setState(row[10].toString());
-				employee.setZip(Integer.parseInt(row[11].toString()));
-				employee.setStatus(row[12].toString());
+				if(row[8] != null)
+				employee.setPhone_num(row[8].toString());
+				if(row[9] != null)
+				employee.setOffice_extension(Integer.parseInt(row[9].toString()));
+				if(row[10] != null)
+				employee.setEmail(row[10].toString());
+				if(row[11] != null)
+				employee.setStreet(row[11].toString());
+				if(row[12] != null)
+				employee.setCity(row[12].toString());
+				if(row[13] != null)
+				employee.setState(row[13].toString());
+				if(row[14] != null)
+				employee.setZip(Integer.parseInt(row[14].toString()));
+				if(row[15] != null)
+				employee.setStatus(Integer.parseInt(row[15].toString()));
+
 				employeeList.add(employee);
 			}
 
@@ -427,7 +446,7 @@ public class ConfigDatabase
 				employee.setCity(row[9].toString());
 				employee.setState(row[10].toString());
 				employee.setZip(Integer.parseInt(row[11].toString()));
-				employee.setStatus(row[12].toString());
+				employee.setStatus(Integer.parseInt(row[15].toString()));
 				employee.setAddress_id(Integer.parseInt(row[13].toString()));
 				employeeList.add(employee);
 			}
