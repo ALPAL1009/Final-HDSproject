@@ -2,7 +2,7 @@ package com.hds.controller;
 
 import com.hds.model.AddressPojo;
 import com.hds.model.CustomerPojo;
-import com.hds.util.ConfigDatabase;
+import com.hds.util.ConfigCustomerDB;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,11 +17,11 @@ import java.util.List;
 public class CustomerServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	private ConfigDatabase configDatabase;
+	private ConfigCustomerDB configCustomerDB;
 
 	public void init()
 	{
-		configDatabase = new ConfigDatabase();
+		configCustomerDB = new ConfigCustomerDB();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -29,9 +29,9 @@ public class CustomerServlet extends HttpServlet
 		//Populate the Customer Records from the Employee page section
 		if(request.getParameter("Customer Records") != null)
 		{
-//			System.out.println("Populate customer list ");
+			//			System.out.println("Populate customer list ");
 			List<CustomerPojo> customerList;
-			customerList = configDatabase.customerViewDB();
+			customerList = configCustomerDB.customerViewDB();
 
 			request.setAttribute("customerList", customerList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/customerRecords.jsp");
@@ -41,11 +41,11 @@ public class CustomerServlet extends HttpServlet
 		//Populates the Edit Customer Page with Single customer
 		if(request.getParameter("Edit") != null)
 		{
-//			System.out.println("Updating Customer ");
+			//			System.out.println("Updating Customer ");
 			int customerId = Integer.parseInt(request.getParameter("id"));
 
 			List<CustomerPojo> customerList;
-			customerList = configDatabase.editCustomer(customerId);
+			customerList = configCustomerDB.editCustomer(customerId);
 
 			request.setAttribute("customerList", customerList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/editCustomerRecords.jsp");
@@ -60,10 +60,10 @@ public class CustomerServlet extends HttpServlet
 		//Adds new address to Address database
 		if(request.getParameter("Add New Customer") != null)
 		{
-//			System.out.println("Get ADD");
+			//			System.out.println("Get ADD");
 
 			//Request Parameters from customerRecords.jsp
-			int customer_address_id = configDatabase.getNextAddressId();
+			int customer_address_id = configCustomerDB.getNextAddressId();
 			System.out.println("Next Id is: " + customer_address_id);
 			String street = request.getParameter("address_street");
 			System.out.println(street);
@@ -73,7 +73,7 @@ public class CustomerServlet extends HttpServlet
 			System.out.println(state);
 			String zip = request.getParameter("address_zip");
 			System.out.println(zip);
-			int customer_id = configDatabase.getNextCustomerId();
+			int customer_id = configCustomerDB.getNextCustomerId();
 			System.out.println("Next Id is: " + customer_id);
 			String customer_last_name = request.getParameter("cus_last_name");
 			String customer_first_name = request.getParameter("cus_first_name");
@@ -86,17 +86,17 @@ public class CustomerServlet extends HttpServlet
 			//Customer object as a foreign key
 			//update address database
 			AddressPojo addressPojo = new AddressPojo(customer_address_id, street, city, state, zip);
-			configDatabase.addToDataBase(addressPojo);
+			configCustomerDB.addToDataBase(addressPojo);
 
 			//Create the Customer object and update customer database
 			CustomerPojo customerPojo = new CustomerPojo(customer_id, customer_address_id, customer_last_name, customer_first_name, customer_mi,
 					customer_phone_num,
 					customer_email);
 			System.out.println("Got info");
-			configDatabase.addToDataBase(customerPojo);
+			configCustomerDB.addToDataBase(customerPojo);
 
 			List<CustomerPojo> customerList;
-			customerList = configDatabase.customerViewDB();
+			customerList = configCustomerDB.customerViewDB();
 
 			request.setAttribute("customerList", customerList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/customerRecords.jsp");
@@ -106,7 +106,7 @@ public class CustomerServlet extends HttpServlet
 		//Pull the existing Customer and Update their information
 		if(request.getParameter("Update Customer") != null)
 		{
-//			System.out.println("Update Customer ");
+			//			System.out.println("Update Customer ");
 
 			//Request Parameters from customerRecords.jsp
 			int customer_address_id = Integer.parseInt(request.getParameter("addressId"));
@@ -126,17 +126,17 @@ public class CustomerServlet extends HttpServlet
 			String customer_email = request.getParameter("cus_email");
 
 			AddressPojo addressPojo = new AddressPojo(customer_address_id, street, city, state, zip);
-			configDatabase.updateDatabase(addressPojo);
+			configCustomerDB.updateDatabase(addressPojo);
 
 			//Create the Customer object and update customer database
 			CustomerPojo customerPojo = new CustomerPojo(customer_id, customer_address_id, customer_last_name, customer_first_name, customer_mi,
 					customer_phone_num,
 					customer_email);
 			System.out.println("Got info");
-			configDatabase.updateDatabase(customerPojo);
+			configCustomerDB.updateDatabase(customerPojo);
 
 			List<CustomerPojo> customerList;
-			customerList = configDatabase.customerViewDB();
+			customerList = configCustomerDB.customerViewDB();
 
 			request.setAttribute("customerList", customerList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/customerRecords.jsp");
@@ -146,17 +146,17 @@ public class CustomerServlet extends HttpServlet
 		//Delete Customer and their corresponding address
 		if(request.getParameter("Delete") != null)
 		{
-//			System.out.println("Get Delete");
+			//			System.out.println("Get Delete");
 			int customerId = Integer.parseInt(request.getParameter("customerId"));
-//			System.out.print(customerId);
-			configDatabase.deleteCustomer(customerId);
+			//			System.out.print(customerId);
+			configCustomerDB.deleteCustomer(customerId);
 
 			int addressId = Integer.parseInt(request.getParameter("addressId"));
-//			System.out.print(addressId);
-			configDatabase.deleteAddress(addressId);
+			//			System.out.print(addressId);
+			configCustomerDB.deleteAddress(addressId);
 
 			List<CustomerPojo> customerList;
-			customerList = configDatabase.customerViewDB();
+			customerList = configCustomerDB.customerViewDB();
 
 			request.setAttribute("customerList", customerList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/customerRecords.jsp");

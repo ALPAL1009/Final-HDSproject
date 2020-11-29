@@ -37,8 +37,6 @@ public class EmployeeRecordsServlet extends HttpServlet
 			employeeList = configDatabase.employeeViewDB();
 
 			request.setAttribute("employeeList", employeeList);
-
-			request.setAttribute("employeeList", employeeList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/employeeRecords.jsp");
 			rd.forward(request, response);
 		}
@@ -93,30 +91,29 @@ public class EmployeeRecordsServlet extends HttpServlet
 
 			//----Employee info----//
 			System.out.println("Employee Information");
-			System.out.println("last_name = "+ last_name);
-			System.out.println("first_name = "+ first_name);
+			System.out.println("last_name = " + last_name);
+			System.out.println("first_name = " + first_name);
 			String mi = request.getParameter("mi");
-			System.out.println("mi = "+ mi);
+			System.out.println("mi = " + mi);
 			int job_id = Integer.parseInt(request.getParameter("payRate"));
-			System.out.println("job_id = "+ job_id);
-			System.out.println("addressId = "+ addressId);
+			System.out.println("job_id = " + job_id);
+			System.out.println("addressId = " + addressId);
 			int office_location_id = Integer.parseInt(request.getParameter("selLocation"));
-			System.out.println("office_location_id = "+ office_location_id);
+			System.out.println("office_location_id = " + office_location_id);
 			String phone_num = request.getParameter("phone_num");
-			System.out.println("phone_num = "+ phone_num);
+			System.out.println("phone_num = " + phone_num);
 			int office_extension = Integer.parseInt(request.getParameter("office_extension"));
-			System.out.println("office_extension = "+ office_extension);
+			System.out.println("office_extension = " + office_extension);
 			String email = request.getParameter("email");
-			System.out.println("email = "+ email);
+			System.out.println("email = " + email);
 			int status_id = Integer.parseInt(request.getParameter("selStatus"));
-			System.out.println("status_id = "+ status_id);
-
+			System.out.println("status_id = " + status_id);
 
 			AddressPojo addressPojo = new AddressPojo(addressId, street, city, state, zip);
 			configDatabase.addToDataBase(addressPojo);
 
-//			EmployeeSiteUserPojo employeeSiteUserPojo = new EmployeeSiteUserPojo(site_user_id, employee_id, username, password, is_admin);
-//			configDatabase.addToDataBase(employeeSiteUserPojo);
+			//			EmployeeSiteUserPojo employeeSiteUserPojo = new EmployeeSiteUserPojo(site_user_id, employee_id, username, password, is_admin);
+			//			configDatabase.addToDataBase(employeeSiteUserPojo);
 
 			EmployeePojo employeePojo = new EmployeePojo(employee_id, addressId, job_id, status_id, office_location_id, site_user_id, last_name,
 					first_name, mi, phone_num, office_extension, email);
@@ -163,7 +160,25 @@ public class EmployeeRecordsServlet extends HttpServlet
 			employeeList = configDatabase.employeeViewDB();
 
 			request.setAttribute("employeeList", employeeList);
-			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/customerRecords.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/employeeRecords.jsp");
+			rd.forward(request, response);
+		}
+		if(request.getParameter("Delete") != null)
+		{
+			System.out.println("Delete Employee");
+			int employee_id = Integer.parseInt(request.getParameter("del_employee_id"));
+			System.out.print("Delete employee with id: " + employee_id);
+			configDatabase.deleteEmployee(employee_id);
+
+			int addressId = Integer.parseInt(request.getParameter("del_addressId"));
+			//			System.out.print(addressId);
+			configDatabase.deleteAddress(addressId);
+
+			List<EmployeePojo> employeeList;
+			employeeList = configDatabase.employeeViewDB();
+
+			request.setAttribute("employeeList", employeeList);
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/employeeRecords.jsp");
 			rd.forward(request, response);
 		}
 

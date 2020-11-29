@@ -185,9 +185,11 @@
                 <td>${employeeList.zip}</td>
                 <td>${employeeList.status_id}</td>
                 <td>
-                    <form action="../employeeRecordsServlet" method="POST">
-                        <input type="hidden" name="id"
+                    <form action="../employeeRecordsServlet" method="GET">
+                        <input type="hidden" name="del_employee_id"
                                value="<c:out value='${employeeList.employee_id}' />"/>
+                        <input type="hidden" name="del_addressId"
+                               value="<c:out value='${employeeList.address_id}' />"/>
                         <input type="submit" name="Delete" value="Delete">
                     </form>
                 </td>
