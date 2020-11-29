@@ -14,99 +14,120 @@
 
 /*-----Customer Records-----*/
 .customerRecords {
-    background: url("../images/bg1.jpg");
+    /*      Added (11/28)  */
+    background-image: url("../images/bg1.jpg");
+    height: 110vh;
     background-size: cover;
-
-
-    /*    Added (11/9)    */
-    height: 150vh;
-    width: 330vh;
 }
 
 .customerRecords-content{
+    /*      Added (11/28)  */
+    height: 50vh;
+    overflow: scroll;
     margin-left: 275px;
+    background-image: url("../images/bg1.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 
-
-/*       Added (11/9)   */
 .customerRecords-content h1 {
-    padding-right: 100vh;
+    /*      Added (11/28)  */
+    position: center;
 }
 
 
 /*-----Employee Records-----*/
 .employeeRecords {
-    background: url("../images/bg1.jpg");
+    /*      Added (11/28)    */
+    background-image: url("../images/bg1.jpg");
+    height: 110vh;
     background-size: cover;
-
-
-    /*    Added (11/9)    */
-    height: 150vh;
-    width: 390vh;
 }
 
 .employeeRecords-content{
+    /*      Added (11/28)  */
+    height: 50vh;
+    overflow: scroll;
     margin-left: 275px;
+    background-image: url("../images/bg1.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-/*       Added (11/9)   */
 .employeeRecords-content h1 {
-    padding-right: 150vh;
+    /*       Added (11/28)   */
+    position: center;
 }
-
 
 /*-----Inventory-----*/
 .inventory {
-    background: url("../images/bg1.jpg");
+    /*       Added (11/28)   */
+    background-image: url("../images/bg1.jpg");
+    height: 110vh;
     background-size: cover;
-
-
-    /*    Added (11/9)    */
-    height: 150vh;
-    width: 250vh;
 }
 
 .inventory-content {
+    /*       Added (11/28)   */
+    height: 50vh;
+    overflow: scroll;
     margin-left: 275px;
+    background-image: url("../images/bg1.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-
-/*    Added (11/9)    */
 .inventory-content h1 {
-    padding-right: 50vh;
+    /*       Added (11/28)   */
+    position: center;
 }
 
 /*-----Jobs for Bid-----*/
 .jobsForBid {
-    background: url("../images/bg1.jpg");
+    /*       Added (11/28)   */
+    background-image: url("../images/bg1.jpg");
+    height: 110vh;
     background-size: cover;
-
-    /*    Added (11/9)    */
-    height: 150vh;
-
-
 }
 
-/*     Added/Change (11/9)    */
 .jobsForBid-content {
-    margin-left: 260px;
+    /*       Added (11/28)   */
+    height: 50vh;
+    overflow: scroll;
+    margin-left: 275px;
+    background-image: url("../images/bg1.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
-
 
 /*---Monthly Statement Form----*/
 .monthlyStatement {
-    background: url("../images/bg1.jpg");
+    /*       Added (11/28)   */
+    background-image: url("../images/bg1.jpg");
+    height: 110vh;
     background-size: cover;
-
 }
 
 .monthlyStatement-container{
+    /*       Added (11/28)   */
+    height: 50vh;
+    overflow: scroll;
     margin-left: 275px;
+    background-image: url("../images/bg1.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
+
 #monthlyStatement\ topAddress{
     text-align: center;
 }
+
 table {
     border-collapse: collapse;
     width: 75%;
@@ -117,6 +138,7 @@ table, td, th {
     padding: 5px;
 
 }
+
 #image{
     width: 100px;
 }
@@ -124,10 +146,12 @@ table, td, th {
 h1 {
     text-align: center;
 }
+
 #monthlyStatement\ bottom{
     text-align: right;
     width: 75%;
 }
+
 #monthlyStatement\ finePrint{
     font-size: smaller;
     text-align: center;
@@ -135,27 +159,42 @@ h1 {
 
 /*-----Order Records-----*/
 .orderRecords{
-    background: url("../images/bg1.jpg");
+    /*      Added (11/28)    */
+    background-image: url("../images/bg1.jpg");
+    height: 110vh;
     background-size: cover;
-
-    /*    Added (11/9)    */
-    height: 150vh;
 }
+
 .orderRecords-content{
+    /*       Added (11/28)   */
+    height: 50vh;
+    overflow: scroll;
     margin-left: 275px;
+    background-image: url("../images/bg1.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
-
 
 /*-----Sale Receipt-----*/
 .saleReceipt{
-    background: url("../images/bg1.jpg");
+    /*      Added (11/28)    */
+    background-image: url("../images/bg1.jpg");
+    height: 110vh;
     background-size: cover;
-    height: 150vh;
 }
 
 .saleReceipt-container{
+    /*       Added (11/28)   */
+    height: 50vh;
+    overflow: scroll;
     margin-left: 275px;
+    background-image: url("../images/bg1.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
+
 table {
     border-collapse: collapse;
     width: 75%;
@@ -177,22 +216,32 @@ th {
 
 /*-----Sale Summary-----*/
 .saleSummary{
-    background: url("../images/bg1.jpg");
+    /*      Added (11/28)    */
+    background-image: url("../images/bg1.jpg");
+    height: 110vh;
     background-size: cover;
+}
 
-    /*    Added (11/9)    */
-    height: 150vh;
-}
 .saleSummary-content{
+    /*       Added (11/28)   */
+    height: 50vh;
+    overflow: scroll;
     margin-left: 275px;
+    background-image: url("../images/bg1.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
+
 #saleSummaryTotal{
     border-collapse: collapse;
     border: 2px solid black;
 }
+
 #saleSummaryTotal tr{
 
 }
+
 #saleSummaryTotal td{
     width: 50%;
     text-align: right;

@@ -33,7 +33,7 @@ public class HibernateUtil {
                 // add user
                 settings.put(Environment.USER, "root");
                 // add password
-                settings.put(Environment.PASS, "luke#1030");
+                settings.put(Environment.PASS, "databases!kitties!coffee!");
 
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
