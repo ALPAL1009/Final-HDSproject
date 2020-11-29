@@ -8,7 +8,7 @@ public class EmployeeSiteUserPojo {
 
     @Id
     @Column(name = "SiteUserID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int site_user_id;
 
     @Column(name = "EmployeeID")

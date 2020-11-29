@@ -9,7 +9,7 @@ public class OrderPojo {
 
     @Id
     @Column(name = "OrderID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
 
     @Column(name = "CustomerID")

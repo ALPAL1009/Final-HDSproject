@@ -8,7 +8,7 @@ public class ProductOrderItemPojo {
 
     @Id
     @Column(name = "ItemID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int item_id;
 
     @Column(name = "ProductID")

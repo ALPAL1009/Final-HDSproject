@@ -9,7 +9,7 @@ public class JobsForBidPojo {
 
     @Id
     @Column(name = "JobBidID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int job_bid_id;
 
     @Column(name = "Description")

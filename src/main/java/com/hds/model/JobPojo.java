@@ -8,7 +8,7 @@ public class JobPojo {
 
     @Id
     @Column(name = "JobID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int job_id;
 
     @Column(name = "JobPositionID")

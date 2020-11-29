@@ -8,7 +8,7 @@ public class ProductPojo {
 
     @Id
     @Column(name = "ProductID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int product_id;
 
     @Column(name = "BrandID")

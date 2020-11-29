@@ -8,7 +8,7 @@ public class OfficeLocationPojo {
 
     @Id
     @Column(name = "LocationID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int location_id;
 
     @Column(name = "AddressID")
