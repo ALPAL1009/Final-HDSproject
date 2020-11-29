@@ -70,7 +70,7 @@
 
     <div class="inventory-content">
 
-        <h1>Inventory<br><br></h1>
+        <h1>Edit Inventory<br><br></h1>
 
         <table id="inventoryTable">
             <tr>
@@ -89,90 +89,72 @@
             </tr>
             <tr>
                 <form action="../inventoryServlet" method="GET">
+                    <c:forEach var="productList" items="${productList}">
                     <td>
-                        <%--                        <label><input type="text" name="product.product_id"--%>
-                        <%--                                      value=""/></label>--%>
+                            ${productList.product_id}
                     </td>
                     <td>
-                        <jsp:include
-                                page="../templates/selectProductBrand.jsp"></jsp:include>
+                            <jsp:include page="../templates/selectProductBrand.jsp"></jsp:include>
+                    <td>
+                        <label><input type="text" name="product.category_name"
+                                      value="${productList.categoryName}"/></label>
                     </td>
                     <td>
-                        <label><input type="text" name="new_category_name"
-                                      value=""/></label>
+                        <label><input type="text" name="product.inventory_count"
+                                      value="${productList.inventory_count}"/></label>
                     </td>
                     <td>
-                        <label><input type="text" name="new_inventory_count"
-                                      value=""/></label></td>
+                        <label><input type="text" name="product.model_num"
+                                      value="${productList.model_num}"/></label></td>
                     <td>
-                        <label><input type="text" name="new_model_num"
-                                      value=""/></label></td>
+                        <label><input type="text" name="product.serial_num"
+                                      value="${productList.serial_num}"/></label></td>
                     <td>
-                        <label><input type="text" name="new_serial_num"
-                                      value=""/></label></td>
+                        <label><input type="text" name="product.description"
+                                      value="${productList.description}"/></label></td>
                     <td>
-                        <label><input type="text" name="new_description"
-                                      value=""/></label></td>
-                    <td>
-                        <label><input type="text" name="new_cost" value=""/></label>
+                        <label><input type="text" name="product.cost"
+                                      value="${productList.cost}"/></label>
                     </td>
                     <td>
-                        <label><input type="text" name="new_list_price"
-                                      value=""/></label></td>
+                        <label><input type="text" name="product.list_price"
+                                      value="${productList.list_price}"/></label></td>
                     <td>
-                        <label><input type="text" name="new_deliveryCost"
-                                      value=""/></label></td>
+                        <label><input type="text" name="product.deliveryCost"
+                                      value="${productList.deliveryCost}"/></label></td>
                     <td>
                         <jsp:include page="../templates/selectActive.html"></jsp:include>
                     </td>
 
                     <td>
-                        <input type="submit" name="Add New Product"
-                               value="Add New Product">
+                        <input type="submit" name="Update Product"
+                               value="Update Product">
                     </td>
                 </form>
             </tr>
-            <c:forEach var="productList" items="${productList}">
-                <tr>
-                    <td>${productList.product_id}</td>
-                    <td>${productList.brandName}</td>
-                    <td>${productList.categoryName}</td>
-                    <td>${productList.inventory_count}</td>
-                    <td>${productList.model_num}</td>
-                    <td>${productList.serial_num}</td>
-                    <td>${productList.description}</td>
-                    <td>${productList.cost}</td>
-                    <td>${productList.list_price}</td>
-                    <td>${productList.deliveryCost}</td>
-                    <td>${productList.is_active}</td>
-                    <td>
-                        <form action="../inventoryServlet" method="POST">
-                            <input type="hidden" name="id"
-                                   value="<c:out value='${productList.product_id}' />"/>
-                            <input type="submit" name="Edit" value="Edit">
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-            <%--Sample layout--%>
+
             <tr>
-                <td>{productList.product_id}</td>
-                <td>{productList.product_name}</td>
-                <td>{productList.category_name}</td>
-                <td>{productList.inventory_count}</td>
-                <td>{productList.model_num}</td>
-                <td>{productList.serial_num}</td>
-                <td>{productList.description}</td>
-                <td>{productList.cost}</td>
-                <td>{productList.list_price}</td>
-                <td>{productList.deliveryCost}</td>
-                <td>{productList.is_active}</td>
-                <%--                <td>--%>
-                <%--                    <a href="edit?id=<c:out value='${productList.id}' />">Edit</a>--%>
-                <%--                    &nbsp;&nbsp;&nbsp;&nbsp;--%>
-                <%--                    <a href="delete?id=<c:out value='${productList.id}' />">Delete</a>--%>
-                <%--                </td>--%>
+                <td>${productList.product_id}</td>
+                <td>${productList.brandName}</td>
+                <td>${productList.categoryName}</td>
+                <td>${productList.inventory_count}</td>
+                <td>${productList.model_num}</td>
+                <td>${productList.serial_num}</td>
+                <td>${productList.description}</td>
+                <td>${productList.cost}</td>
+                <td>${productList.list_price}</td>
+                <td>${productList.deliveryCost}</td>
+                <td>${productList.is_active}</td>
+                <td>
+                    <form action="../inventoryServlet" method="GET">
+                        <input type="hidden" name="id"
+                               value="<c:out value='${productList.product_id}' />"/>
+                        <input type="submit" name="Delete" value="Delete">
+                    </form>
+                </td>
             </tr>
+            </c:forEach>
+
         </table>
 
     </div>

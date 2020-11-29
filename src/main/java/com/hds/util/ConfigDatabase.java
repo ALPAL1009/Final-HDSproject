@@ -13,11 +13,11 @@ import java.util.List;
 
 public class ConfigDatabase
 {
-//________________________________
-//	Customer Section
-//________________________________
+	//________________________________
+	//	Customer Section
+	//________________________________
 
-//	//Get the next primary key in the address table
+	//	//Get the next primary key in the address table
 	public int getNextAddressId()
 	{
 		Transaction transaction = null;
@@ -174,7 +174,6 @@ public class ConfigDatabase
 				customer.setState(row[10].toString());
 				customer.setZip(Integer.parseInt(row[11].toString()));
 				customer.setCustomer_address_id(Integer.parseInt(row[12].toString()));
-				;
 				customerList.add(customer);
 			}
 
@@ -352,35 +351,35 @@ public class ConfigDatabase
 				EmployeePojo employee = new EmployeePojo();
 				employee.setEmployee_id(Integer.parseInt(row[0].toString()));
 				if(row[1] != null)
-				employee.setLast_name(row[1].toString());
+					employee.setLast_name(row[1].toString());
 				if(row[2] != null)
-				employee.setFirst_name(row[2].toString());
+					employee.setFirst_name(row[2].toString());
 				if(row[3] != null)
-				employee.setMi(row[3].toString());
+					employee.setMi(row[3].toString());
 				if(row[4] != null)
-				employee.setPosition(row[4].toString());
+					employee.setPosition(row[4].toString());
 				if(row[5] != null)
 					employee.setPayRate(Integer.parseInt(row[5].toString()));
 				if(row[6] != null)
-				employee.setOfficeLocation(row[6].toString());
+					employee.setOfficeLocation(row[6].toString());
 				if(row[7] != null)
-				employee.setSite_user_id(Integer.parseInt(row[7].toString()));
+					employee.setSite_user_id(Integer.parseInt(row[7].toString()));
 				if(row[8] != null)
-				employee.setPhone_num(row[8].toString());
+					employee.setPhone_num(row[8].toString());
 				if(row[9] != null)
-				employee.setOffice_extension(Integer.parseInt(row[9].toString()));
+					employee.setOffice_extension(Integer.parseInt(row[9].toString()));
 				if(row[10] != null)
-				employee.setEmail(row[10].toString());
+					employee.setEmail(row[10].toString());
 				if(row[11] != null)
-				employee.setStreet(row[11].toString());
+					employee.setStreet(row[11].toString());
 				if(row[12] != null)
-				employee.setCity(row[12].toString());
+					employee.setCity(row[12].toString());
 				if(row[13] != null)
-				employee.setState(row[13].toString());
+					employee.setState(row[13].toString());
 				if(row[14] != null)
-				employee.setZip(Integer.parseInt(row[14].toString()));
+					employee.setZip(Integer.parseInt(row[14].toString()));
 				if(row[15] != null)
-				employee.setStatus(Integer.parseInt(row[15].toString()));
+					employee.setStatus(Integer.parseInt(row[15].toString()));
 
 				employeeList.add(employee);
 			}
@@ -425,7 +424,7 @@ public class ConfigDatabase
 					"join hds.officelocation o on e.OfficeLocationID = o.LocationID \n" +
 					"join hds.employeesiteuser esite on e.SiteUserID = esite.SiteUserID\n" +
 					"join hds.jobposition jp on e.JobID = jp.JobPositionID\n" +
-					"join hds.job on e.JobID = job.JobID;"+
+					"join hds.job on e.JobID = job.JobID;" +
 					"    where EmployeeID =" + employee_id;
 			SQLQuery query = session.createSQLQuery(queryString);
 
@@ -473,8 +472,7 @@ public class ConfigDatabase
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-
-			SQLQuery query = session.createSQLQuery("SELECT \n" +
+			String queryString = "SELECT \n" +
 					"    product.ProductID,\n" +
 					"    productbrand.ProductName,\n" +
 					"    product.CategoryID,\n" +
@@ -487,9 +485,9 @@ public class ConfigDatabase
 					"    product.DeliveryCost,\n" +
 					"    product.IsActive\n" +
 					"FROM\n" +
-					"    hds.product \n" +
-					"    join hds.productbrand\n" +
-					"\t\ton product.BrandID = productbrand.BrandID;  ");
+					"    hds.product\n" +
+					"JOIN hds.productbrand ON product.BrandID = productbrand.BrandID;";
+			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
 			for(Object[] row : rows)
 			{
@@ -522,6 +520,83 @@ public class ConfigDatabase
 		return productList;
 	}
 
+	public List<ProductPojo> editProduct(int productId)
+	{
+		Transaction transaction = null;
+		List productList = new ArrayList<ProductPojo>();
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT \n" +
+					"    product.ProductID,\n" +
+					"    productbrand.ProductName,\n" +
+					"    product.CategoryID,\n" +
+					"    product.InventoryCount,\n" +
+					"    product.ModelNum,\n" +
+					"    product.SerialNum,\n" +
+					"    product.Description,\n" +
+					"    product.Cost,\n" +
+					"    product.ListPrice,\n" +
+					"    product.DeliveryCost,\n" +
+					"    product.IsActive\n" +
+					"FROM\n" +
+					"    hds.product\n" +
+					"JOIN hds.productbrand ON product.BrandID = productbrand.BrandID\n" +
+					"where product.ProductID = "+ productId;
 
+			SQLQuery query = session.createSQLQuery(queryString);
+			List<Object[]> rows = query.list();
+			for(Object[] row : rows)
+			{
+				ProductPojo product = new ProductPojo();
+				product.setProduct_id(Integer.parseInt(row[0].toString()));
+				product.setBrandName(row[1].toString());
+				if(row[2] != null)
+					product.setCategoryName(row[2].toString());
+				if(row[3] != null)
+					product.setInventory_count(Integer.parseInt(row[3].toString()));
+				product.setModel_num(row[4].toString());
+				product.setSerial_num(Integer.parseInt(row[5].toString()));
+				product.setDescription(row[6].toString());
+				product.setCost(Double.parseDouble(row[7].toString()));
+				product.setList_price(Double.parseDouble(row[8].toString()));
+				if(row[9] != null)
+					product.setDeliveryCost(Integer.parseInt(row[9].toString()));
+				product.setIs_active(row[10].toString());
+				productList.add(product);
+			}
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return productList;
+	}
+
+	public int getNextProductId()
+	{
+		Transaction transaction = null;
+		int product_id = 0;
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT max(product.ProductID)FROM hds.product";
+			List customerIDResult = session.createSQLQuery(queryString).list();
+			product_id = Integer.parseInt(customerIDResult.get(0).toString()) + 1;
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return product_id;
+	}
 }
 

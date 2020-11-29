@@ -14,32 +14,8 @@ public class ProductPojo {
     @Column(name = "BrandID")
     private int brand_id;
 
-    private String brandName;
-
-    public String getBrandName()
-    {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName)
-    {
-        this.brandName = brandName;
-    }
-
     @Column(name = "CategoryID")
     private int category_id;
-
-    private String categoryName;
-
-    public String getCategoryName()
-    {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName)
-    {
-        this.categoryName = categoryName;
-    }
 
     @Column(name = "InventoryCount")
     private int inventory_count;
@@ -59,21 +35,40 @@ public class ProductPojo {
     @Column(name = "ListPrice")
     private double list_price;
 
-    private int deliveryCost;
-
-    public int getDeliveryCost()
-    {
-        return deliveryCost;
-    }
-
-    public void setDeliveryCost(int deliveryCost)
-    {
-        this.deliveryCost = deliveryCost;
-    }
-
     @Column(name = "IsActive")
     private String is_active;
 
+    //Not in Product table
+
+    private String brandName;
+
+    private int deliveryCost;
+
+    private String categoryName;
+
+    //Constructors
+
+    public ProductPojo()
+    {
+    }
+
+    public ProductPojo(int product_id, int brand_id,  int category_id, int inventory_count,
+            String model_num, int serial_num, String description, double cost, double list_price, String is_active)
+    {
+        this.product_id = product_id;
+        this.brand_id = brand_id;
+        this.brandName = brandName;
+        this.category_id = category_id;
+        this.categoryName = categoryName;
+        this.inventory_count = inventory_count;
+        this.model_num = model_num;
+        this.serial_num = serial_num;
+        this.description = description;
+        this.cost = cost;
+        this.list_price = list_price;
+        this.deliveryCost = deliveryCost;
+        this.is_active = is_active;
+    }
 
     // Getter Setter methods
 
@@ -158,5 +153,35 @@ public class ProductPojo {
     public void setIs_active(String is_active)
     {
         this.is_active = is_active;
+    }
+
+    public String getBrandName()
+    {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName)
+    {
+        this.brandName = brandName;
+    }
+
+    public int getDeliveryCost()
+    {
+        return deliveryCost;
+    }
+
+    public void setDeliveryCost(int deliveryCost)
+    {
+        this.deliveryCost = deliveryCost;
+    }
+
+    public String getCategoryName()
+    {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName)
+    {
+        this.categoryName = categoryName;
     }
 }
