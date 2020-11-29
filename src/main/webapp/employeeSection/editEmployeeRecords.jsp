@@ -93,16 +93,16 @@
                 <th></th>
             </tr>
             <tr>
+                <%--Update Employee Records--%>
                 <form action="../employeeRecordsServlet" method="GET">
                     <c:forEach var="employeeList" items="${employeeList}">
-                    <td>
+
                     <td>${employeeList.employee_id}</td>
-                    </td>
 
                     <td>
                         <label>
                             <input type="text" name="last_name"
-                                   value=""/>${employeeList.last_name}
+                                   value="${employeeList.last_name}"/>
                         </label>
                     </td>
                     <td>
@@ -159,10 +159,10 @@
                     <td>
                         <jsp:include page="../templates/selectStatus.html"></jsp:include>
                     </td>
-                        <input type="hidden" name="employee_id"
-                               value="<c:out value='${employeeList.employee_id}' />"/>
-                        <input type="hidden" name="addressId"
-                               value="<c:out value='${employeeList.address_id}' />"/>
+                    <input type="hidden" name="employee_id"
+                           value="<c:out value='${employeeList.employee_id}' />"/>
+                    <input type="hidden" name="addressId"
+                           value="<c:out value='${employeeList.address_id}' />"/>
                     <td>
                         <input type="submit" name="Update Employee"
                                value="Update Employee">
@@ -188,7 +188,7 @@
                     <form action="../employeeRecordsServlet" method="POST">
                         <input type="hidden" name="id"
                                value="<c:out value='${employeeList.employee_id}' />"/>
-                        <input type="submit" name="Edit" value="Edit">
+                        <input type="submit" name="Delete" value="Delete">
                     </form>
                 </td>
             </tr>
