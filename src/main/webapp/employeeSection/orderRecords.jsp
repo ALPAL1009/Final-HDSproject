@@ -146,7 +146,7 @@
                 <tr>
                     <td>${orderList.order_id}</td>
                     <td>${orderList.customer_id}</td>
-                    <td>${orderList.address}</td>
+                    <td>${orderList.street}</td>
                     <td>${orderList.city}</td>
                     <td>${orderList.state}</td>
                     <td>${orderList.zip}</td>
@@ -164,24 +164,7 @@
                 </tr>
             </c:forEach>
 
-            <%--Sample layout--%>
-            <tr>
-                <td>{orderList.id}</td>
-                <td>{orderList.customerId}</td>
-                <td>{orderList.address}</td>
-                <td>{orderList.city}</td>
-                <td>{orderList.state}</td>
-                <td>{orderList.zip}</td>
-                <td>{orderList.shippingCost}</td>
-                <td>{orderList.totalCost}</td>
-                <td>{orderList.orderDate}</td>
-                <td>{orderList.deliveryDate}</td>
-                <td>
-                    <input type="hidden" name="id"
-                           value="<c:out value='${orderList.order_id}' />"/>
-                    <input type="submit" name="Edit" value="Edit">
-                </td>
-            </tr>
+
         </table>
 
     </div>

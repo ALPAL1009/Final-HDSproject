@@ -71,7 +71,20 @@ public class ConfigOrderDB
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-			String queryString = "";
+			String queryString = "SELECT \n" +
+					"    o.OrderID,\n" +
+					"    o.CustomerID,\n" +
+					"    a.Street,\n" +
+					"    a.City,\n" +
+					"    a.State,\n" +
+					"    a.Zip,\n" +
+					"    o.ShippingCost,\n" +
+					"    o.TotalCost,\n" +
+					"    o.DateOrdered,\n" +
+					"    o.DateDelivered\n" +
+					"FROM\n" +
+					"    hds.order o\n" +
+					"    join address a on o.addressID = a.addressId;";
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
 			for(Object[] row : rows)
@@ -102,14 +115,29 @@ public class ConfigOrderDB
 		return orderList;
 	}
 
-	public List editOrderView(int productId)
+	public List editOrderView(int orderId)
 	{
 		Transaction transaction = null;
-		List orderList = new ArrayList<ProductPojo>();
+		List orderList = new ArrayList<OrderPojo>();
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-			String queryString = " " + productId;
+			String queryString = "SELECT \n" +
+					"    o.OrderID,\n" +
+					"    o.CustomerID,\n" +
+					"    a.Street,\n" +
+					"    a.City,\n" +
+					"    a.State,\n" +
+					"    a.Zip,\n" +
+					"    o.ShippingCost,\n" +
+					"    o.TotalCost,\n" +
+					"    o.DateOrdered,\n" +
+					"    o.DateDelivered,\n" +
+					"    o.AddressID\n" +
+					"FROM\n" +
+					"    hds.order o\n" +
+					"    join address a on o.addressID = a.addressId\n" +
+					"    where o.OrderID =" + orderId;
 
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
