@@ -16,7 +16,94 @@ public class ConfigDatabase
 	//________________________________
 	//	Customer Section
 	//________________________________
+	public int getNextAddressId()
+	{
+		Transaction transaction = null;
+		int addressID = 0;
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "select max(address.AddressID) from hds.address";
+			List IDResult = session.createSQLQuery(queryString).list();
+			addressID = Integer.parseInt(IDResult.get(0).toString()) + 1;
 
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return addressID;
+	}
+	public void addToDataBase(Object object)
+	{
+		System.out.println("Adding " + object.toString());
+		Transaction transaction = null;
+		try (
+				Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			transaction = session.beginTransaction();
+
+			session.save(object);
+
+			transaction.commit();
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+	public void updateDatabase(Object object)
+	{
+		System.out.println("Updating " + object.toString());
+		Transaction transaction = null;
+		try (
+				Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			transaction = session.beginTransaction();
+
+			session.update(object);
+
+			transaction.commit();
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+	public void deleteAddress(int idToDoList)
+	{
+		Transaction transaction = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			transaction = session.beginTransaction();
+
+			AddressPojo addressPojo = session.get(AddressPojo.class, idToDoList);
+			if(addressPojo != null)
+			{
+				session.delete(addressPojo);
+			}
+
+			transaction.commit();
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
 
 	//________________________________
 	//	Employee Section
