@@ -90,40 +90,76 @@
                 <th></th>
             </tr>
             <tr>
-                <td><label><input type="text" name="orderId" value=""/></label></td>
-                <td><label><input type="text" name="order.customerId" value=""/></label></td>
-                <td><label><input type="text" name="order.address" value=""/></label></td>
-                <td><label><input type="text" name="order.city" value=""/></label></td>
-                <td>
-                    <jsp:include page="../templates/selectState.html"></jsp:include>
-                </td>
-                <td><label><input type="text" name="order.zip" value=""/></label></td>
-                <td><label><input type="text" name="order.shippingCost" value=""/></label></td>
-                <td><label><input type="text" name="order.totalCost" value=""/></label></td>
-                <td><input type="date" id="orderDate" name="orderDate" value="" min="2020-01-01" max="2021-12-31"></td>
-                <td><input type="date" id="deliveryDate" name="deliveryDate" value="" min="2020-01-01" max="2021-12-31"></td>
-                <td>
-                    <form action="../orderServlet" method="GET">
+                <%--Add NEW Order--%>
+                <form action="../orderServlet" method="GET">
+                    <td></td>
+                    <td>
+                        <label>
+                            <input type="text" name="new_customer_id"
+                                   value=""/>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="text" name="new_address" value=""/>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="text" name="new_city" value=""/>
+                        </label>
+                    </td>
+                    <td>
+                        <jsp:include page="../templates/selectState.html"></jsp:include>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="text" name="new_zip" value=""/>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="text" name="new_shipping_cost"
+                                   value=""/>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="text" name="new_total_cost" value=""/>
+                        </label>
+                    </td>
+                    <td>
+                        <input type="date" id="orderDate" name="new_date_ordered" value=""
+                               min="2020-01-01" max="2021-12-31">
+                    </td>
+                    <td>
+                        <input type="date" id="deliveryDate" name="new_date_delivered"
+                               value=""
+                               min="2020-01-01" max="2021-12-31">
+                    </td>
+                    <td>
                         <input type="submit" name="Add New Order" value="Add New Order">
-                    </form>
-                </td>
+                    </td>
+                </form>
             </tr>
             <c:forEach var="orderList" items="${orderList}">
                 <tr>
-                    <td>${orderList.id}</td>
-                    <td>${orderList.customerId}</td>
+                    <td>${orderList.order_id}</td>
+                    <td>${orderList.customer_id}</td>
                     <td>${orderList.address}</td>
                     <td>${orderList.city}</td>
                     <td>${orderList.state}</td>
                     <td>${orderList.zip}</td>
-                    <td>${orderList.shippingCost}</td>
-                    <td>${orderList.totalCost}</td>
-                    <td>${orderList.orderDate}</td>
-                    <td>${orderList.deliveryDate}</td>
+                    <td>${orderList.shipping_cost}</td>
+                    <td>${orderList.total_cost}</td>
+                    <td>${orderList.date_ordered}</td>
+                    <td>${orderList.date_delivered}</td>
                     <td>
-                        <a href="edit?id=<c:out value='${orderList.id}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="delete?id=<c:out value='${orderList.id}' />">Delete</a>
+                        <form action="../orderServlet" method="POST">
+                            <input type="hidden" name="id"
+                                   value="<c:out value='${orderList.order_id}' />"/>
+                            <input type="submit" name="Edit" value="Edit">
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
@@ -141,9 +177,9 @@
                 <td>{orderList.orderDate}</td>
                 <td>{orderList.deliveryDate}</td>
                 <td>
-                    <a href="edit?id=<c:out value='${orderList.id}' />">Edit</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="delete?id=<c:out value='${orderList.id}' />">Delete</a>
+                    <input type="hidden" name="id"
+                           value="<c:out value='${orderList.order_id}' />"/>
+                    <input type="submit" name="Edit" value="Edit">
                 </td>
             </tr>
         </table>

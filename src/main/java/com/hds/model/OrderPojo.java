@@ -1,6 +1,7 @@
 package com.hds.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -25,11 +26,18 @@ public class OrderPojo {
     private double total_cost;
 
     @Column(name = "DateOrdered")
-    private Date date_ordered;
+    private LocalDate date_ordered;
 
     @Column(name = "DateDelivered")
-    private Date date_delivered;
+    private LocalDate date_delivered;
 
+    private String street;
+
+    private String city;
+
+    private String state;
+
+    private int zip;
 
     // Getter Setter methods
 
@@ -74,19 +82,59 @@ public class OrderPojo {
         this.total_cost = total_cost;
     }
 
-    public Date getDate_ordered() {
+    public LocalDate getDate_ordered() {
         return date_ordered;
     }
 
-    public void setDate_ordered(Date date_ordered) {
+    public void setDate_ordered(LocalDate date_ordered) {
         this.date_ordered = date_ordered;
     }
 
-    public Date getDate_delivered() {
+    public LocalDate getDate_delivered() {
         return date_delivered;
     }
 
-    public void setDate_delivered(Date date_delivered) {
+    public void setDate_delivered(LocalDate date_delivered) {
         this.date_delivered = date_delivered;
+    }
+
+    public String getStreet()
+    {
+        return street;
+    }
+
+    public void setStreet(String street)
+    {
+        this.street = street;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
+    }
+
+    public String getState()
+    {
+        return state;
+    }
+
+    public void setState(String state)
+    {
+        this.state = state;
+    }
+
+    public int getZip()
+    {
+        return zip;
+    }
+
+    public void setZip(int zip)
+    {
+        this.zip = zip;
     }
 }

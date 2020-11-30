@@ -90,7 +90,7 @@
                 <th></th>
             </tr>
             <tr>
-                <%--Add new Customer--%>
+                <%--Edit Customer--%>
                 <form action="../customerServlet" method="GET">
                     <c:forEach var="customerList" items="${customerList}">
 
