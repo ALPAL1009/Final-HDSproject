@@ -1,6 +1,7 @@
 package com.hds.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,10 +20,18 @@ public class JobsForBidPojo {
     private double bid_amount;
 
     @Column(name = "DateOpen")
-    private Date date_open;
+    private LocalDate date_open;
 
     @Column(name = "DateClosed")
-    private Date date_closed;
+    private LocalDate date_closed;
+
+    private String street;
+
+    private String city;
+
+    private String state;
+
+    private int zip;
 
 
     // Getter Setter methods
@@ -52,19 +61,59 @@ public class JobsForBidPojo {
         this.bid_amount = bid_amount;
     }
 
-    public Date getDate_open() {
+    public LocalDate getDate_open() {
         return date_open;
     }
 
-    public void setDate_open(Date date_open) {
+    public void setDate_open(LocalDate date_open) {
         this.date_open = date_open;
     }
 
-    public Date getDate_closed() {
+    public LocalDate getDate_closed() {
         return date_closed;
     }
 
-    public void setDate_closed(Date date_closed) {
+    public void setDate_closed(LocalDate date_closed) {
         this.date_closed = date_closed;
+    }
+
+    public String getStreet()
+    {
+        return street;
+    }
+
+    public void setStreet(String street)
+    {
+        this.street = street;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
+    }
+
+    public String getState()
+    {
+        return state;
+    }
+
+    public void setState(String state)
+    {
+        this.state = state;
+    }
+
+    public int getZip()
+    {
+        return zip;
+    }
+
+    public void setZip(int zip)
+    {
+        this.zip = zip;
     }
 }

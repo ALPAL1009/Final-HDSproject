@@ -1,18 +1,17 @@
 package com.hds.util;
 
+import com.hds.model.JobsForBidPojo;
 import com.hds.model.OrderPojo;
 import com.hds.model.ProductPojo;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
 
-public class ConfigOrderDB
+public class ConfigJobForBidDB
 {
 
 	public void addToDataBase(Object object)
@@ -64,10 +63,10 @@ public class ConfigOrderDB
 	//________________________________
 	//	Order Section
 	//________________________________
-	public List orderViewDB()
+	public List jobForBidViewDB()
 	{
 		Transaction transaction = null;
-		List orderList = new ArrayList<OrderPojo>();
+		List bidList = new ArrayList<JobsForBidPojo>();
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
@@ -76,19 +75,14 @@ public class ConfigOrderDB
 			List<Object[]> rows = query.list();
 			for(Object[] row : rows)
 			{
-				OrderPojo order = new OrderPojo();
-				order.setOrder_id(Integer.parseInt(row[0].toString()));
-				order.setCustomer_id(Integer.parseInt(row[1].toString()));
-				order.setStreet(row[2].toString());
-				order.setCity(row[3].toString());
-				order.setState(row[4].toString());
-				order.setZip(Integer.parseInt(row[5].toString()));
-				order.setShipping_cost(Double.parseDouble(row[6].toString()));
-				order.setTotal_cost(Double.parseDouble(row[7].toString()));
-				order.setDate_ordered(LocalDate.parse(row[8].toString()));
-				order.setDate_delivered(LocalDate.parse(row[9].toString()));
+				JobsForBidPojo jobBid = new JobsForBidPojo();
+				jobBid.setJob_bid_id(Integer.parseInt(row[0].toString()));
+				jobBid.setDescription(row[1].toString());
+				jobBid.setBid_amount(Double.parseDouble(row[2].toString()));
+				jobBid.setDate_open(LocalDate.parse(row[3].toString()));
+				jobBid.setDate_closed(LocalDate.parse(row[4].toString()));
 
-				orderList.add(order);
+				bidList.add(jobBid);
 			}
 
 		}catch(Exception e)
@@ -99,36 +93,30 @@ public class ConfigOrderDB
 			}
 			e.printStackTrace();
 		}
-		return orderList;
+		return bidList;
 	}
 
-	public List editOrderView(int productId)
+	public List editJobForBidViewDB(int jobBidId)
 	{
 		Transaction transaction = null;
-		List orderList = new ArrayList<ProductPojo>();
+		List bidList = new ArrayList<JobsForBidPojo>();
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-			String queryString = " " + productId;
+			String queryString = " " + jobBidId;
 
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
 			for(Object[] row : rows)
 			{
-				OrderPojo order = new OrderPojo();
-				order.setOrder_id(Integer.parseInt(row[0].toString()));
-				order.setCustomer_id(Integer.parseInt(row[1].toString()));
-				order.setStreet(row[2].toString());
-				order.setCity(row[3].toString());
-				order.setState(row[4].toString());
-				order.setZip(Integer.parseInt(row[5].toString()));
-				order.setShipping_cost(Double.parseDouble(row[6].toString()));
-				order.setTotal_cost(Double.parseDouble(row[7].toString()));
-				order.setDate_ordered(LocalDate.parse(row[8].toString()));
-				order.setDate_delivered(LocalDate.parse(row[9].toString()));
-				order.setAddress_id(Integer.parseInt(row[10].toString()));
+				JobsForBidPojo jobBid = new JobsForBidPojo();
+				jobBid.setJob_bid_id(Integer.parseInt(row[0].toString()));
+				jobBid.setDescription(row[1].toString());
+				jobBid.setBid_amount(Double.parseDouble(row[2].toString()));
+				jobBid.setDate_open(LocalDate.parse(row[3].toString()));
+				jobBid.setDate_closed(LocalDate.parse(row[4].toString()));
 
-				orderList.add(order);
+				bidList.add(jobBid);
 			}
 
 		}catch(Exception e)
@@ -139,10 +127,10 @@ public class ConfigOrderDB
 			}
 			e.printStackTrace();
 		}
-		return orderList;
+		return bidList;
 	}
 
-	public int getNextOrderId()
+	public int getNextBidId()
 	{
 		Transaction transaction = null;
 		int order_id = 0;
@@ -164,7 +152,7 @@ public class ConfigOrderDB
 		return order_id;
 	}
 
-	public void deleteOrder(int productId)
+	public void deleteBid(int productId)
 	{
 
 	}
