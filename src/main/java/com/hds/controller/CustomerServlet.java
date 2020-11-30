@@ -45,7 +45,7 @@ public class CustomerServlet extends HttpServlet
 			int customerId = Integer.parseInt(request.getParameter("id"));
 
 			List<CustomerPojo> customerList;
-			customerList = configCustomerDB.editCustomer(customerId);
+			customerList = configCustomerDB.editCustomerView(customerId);
 
 			request.setAttribute("customerList", customerList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/editCustomerRecords.jsp");

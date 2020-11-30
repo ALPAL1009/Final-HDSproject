@@ -2,7 +2,6 @@ package com.hds.util;
 
 import com.hds.model.AddressPojo;
 import com.hds.model.EmployeePojo;
-import com.hds.model.ProductPojo;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
