@@ -4,7 +4,7 @@ import com.hds.model.AddressPojo;
 import com.hds.model.CustomerPojo;
 import com.hds.model.EmployeePojo;
 import com.hds.model.EmployeeSiteUserPojo;
-import com.hds.util.ConfigDatabase;
+import com.hds.util.ConfigEmployeeDB;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,11 +19,11 @@ import java.util.List;
 public class EmployeeRecordsServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	private ConfigDatabase configDatabase;
+	private ConfigEmployeeDB configEmployeeDB;
 
 	public void init()
 	{
-		configDatabase = new ConfigDatabase();
+		configEmployeeDB = new ConfigEmployeeDB();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -34,7 +34,7 @@ public class EmployeeRecordsServlet extends HttpServlet
 			System.out.println("Populate Employee list ");
 
 			List<EmployeePojo> employeeList;
-			employeeList = configDatabase.employeeViewDB();
+			employeeList = configEmployeeDB.employeeViewDB();
 
 			request.setAttribute("employeeList", employeeList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/employeeRecords.jsp");
@@ -48,7 +48,7 @@ public class EmployeeRecordsServlet extends HttpServlet
 			int employee_id = Integer.parseInt(request.getParameter("id"));
 
 			List<EmployeePojo> employeeList;
-			employeeList = configDatabase.editEmployee(employee_id);
+			employeeList = configEmployeeDB.editEmployeeView(employee_id);
 
 			request.setAttribute("employeeList", employeeList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/editEmployeeRecords.jsp");
@@ -64,7 +64,7 @@ public class EmployeeRecordsServlet extends HttpServlet
 			System.out.println("Add New Employee");
 
 			//----Address----//
-			int addressId = configDatabase.getNextAddressId();
+			int addressId = configEmployeeDB.getNextAddressId();
 			//			System.out.println("Next Address Id is: " + addressId);
 			String street = request.getParameter("street");
 			String city = request.getParameter("city");
@@ -74,7 +74,7 @@ public class EmployeeRecordsServlet extends HttpServlet
 			//----Site user ID----//
 			System.out.println();
 			System.out.println("Adding site user id");
-			int employee_id = configDatabase.getNextEmployeeId();
+			int employee_id = configEmployeeDB.getNextEmployeeId();
 			System.out.println("Next EMP ID is: " + employee_id);
 			int site_user_id = employee_id;
 			System.out.println("site_user_id = " + site_user_id);
@@ -110,17 +110,17 @@ public class EmployeeRecordsServlet extends HttpServlet
 			System.out.println("status_id = " + status_id);
 
 			AddressPojo addressPojo = new AddressPojo(addressId, street, city, state, zip);
-			configDatabase.addToDataBase(addressPojo);
+			configEmployeeDB.addToDataBase(addressPojo);
 
 			//			EmployeeSiteUserPojo employeeSiteUserPojo = new EmployeeSiteUserPojo(site_user_id, employee_id, username, password, is_admin);
 			//			configDatabase.addToDataBase(employeeSiteUserPojo);
 
 			EmployeePojo employeePojo = new EmployeePojo(employee_id, addressId, job_id, status_id, office_location_id, site_user_id, last_name,
 					first_name, mi, phone_num, office_extension, email);
-			configDatabase.addToDataBase(employeePojo);
+			configEmployeeDB.addToDataBase(employeePojo);
 
 			List<EmployeePojo> employeeList;
-			employeeList = configDatabase.employeeViewDB();
+			employeeList = configEmployeeDB.employeeViewDB();
 
 			request.setAttribute("employeeList", employeeList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/employeeRecords.jsp");
@@ -137,7 +137,7 @@ public class EmployeeRecordsServlet extends HttpServlet
 			String zip = request.getParameter("zip");
 
 			AddressPojo addressPojo = new AddressPojo(addressId, street, city, state, zip);
-			configDatabase.updateDatabase(addressPojo);
+			configEmployeeDB.updateDatabase(addressPojo);
 
 			int employee_id = Integer.parseInt(request.getParameter("customerId"));
 			String last_name = request.getParameter("last_name");
@@ -154,10 +154,10 @@ public class EmployeeRecordsServlet extends HttpServlet
 			EmployeePojo employeePojo = new EmployeePojo(employee_id, addressId, job_id, status_id, office_location_id, site_user_id, last_name,
 					first_name, mi, phone_num, office_extension, email);
 			System.out.println("Got info");
-			configDatabase.updateDatabase(employeePojo);
+			configEmployeeDB.updateDatabase(employeePojo);
 
 			List<EmployeePojo> employeeList;
-			employeeList = configDatabase.employeeViewDB();
+			employeeList = configEmployeeDB.employeeViewDB();
 
 			request.setAttribute("employeeList", employeeList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/employeeRecords.jsp");
@@ -168,14 +168,14 @@ public class EmployeeRecordsServlet extends HttpServlet
 			System.out.println("Delete Employee");
 			int employee_id = Integer.parseInt(request.getParameter("del_employee_id"));
 			System.out.print("Delete employee with id: " + employee_id);
-			configDatabase.deleteEmployee(employee_id);
+			configEmployeeDB.deleteEmployee(employee_id);
 
 			int addressId = Integer.parseInt(request.getParameter("del_addressId"));
 			//			System.out.print(addressId);
-			configDatabase.deleteAddress(addressId);
+			configEmployeeDB.deleteAddress(addressId);
 
 			List<EmployeePojo> employeeList;
-			employeeList = configDatabase.employeeViewDB();
+			employeeList = configEmployeeDB.employeeViewDB();
 
 			request.setAttribute("employeeList", employeeList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/employeeRecords.jsp");

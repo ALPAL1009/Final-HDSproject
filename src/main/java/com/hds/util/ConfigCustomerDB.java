@@ -14,9 +14,60 @@ import java.util.List;
 public class ConfigCustomerDB
 {
 	//________________________________
-	//	Customer Section
+	//	General Section
 	//________________________________
 
+	//Add Object to their matching database
+	public void addToDataBase(Object object)
+	{
+		System.out.println("Adding " + object.toString());
+		Transaction transaction = null;
+		try (
+				Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			transaction = session.beginTransaction();
+
+			session.save(object);
+
+			transaction.commit();
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+
+	//Update Object in their corresponding table
+	public void updateDatabase(Object object)
+	{
+		System.out.println("Updating " + object.toString());
+		Transaction transaction = null;
+		try (
+				Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			transaction = session.beginTransaction();
+
+			session.update(object);
+
+			transaction.commit();
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+
+	//________________________________
+	//	Address Section
+	//________________________________
 	//	//Get the next primary key in the address table
 	public int getNextAddressId()
 	{
@@ -40,18 +91,21 @@ public class ConfigCustomerDB
 		return addressID;
 	}
 
-	//Get the next primary key in the customer table
-	public int getNextCustomerId()
+	////Delete address with matching ID from address table
+	public void deleteAddress(int idToDoList)
 	{
 		Transaction transaction = null;
-		int customerID = 0;
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
-			session.beginTransaction();
-			String queryString = "select max(customer.CustomerID) from hds.customer";
-			List customerIDResult = session.createSQLQuery(queryString).list();
-			customerID = Integer.parseInt(customerIDResult.get(0).toString()) + 1;
+			transaction = session.beginTransaction();
 
+			AddressPojo addressPojo = session.get(AddressPojo.class, idToDoList);
+			if(addressPojo != null)
+			{
+				session.delete(addressPojo);
+			}
+
+			transaction.commit();
 		}catch(Exception e)
 		{
 			if(transaction != null)
@@ -60,8 +114,11 @@ public class ConfigCustomerDB
 			}
 			e.printStackTrace();
 		}
-		return customerID;
 	}
+
+	//________________________________
+	//	Employee Section
+	//________________________________
 
 	//View the WHOLE customer table
 	public List customerViewDB()
@@ -125,7 +182,7 @@ public class ConfigCustomerDB
 	}
 
 	//Query the Customer and Address database where Customer Id = customerId
-	public List editCustomer(int customerId)
+	public List editCustomerView(int customerId)
 	{
 		Transaction transaction = null;
 		List customerList = new ArrayList<CustomerPojo>();
@@ -189,19 +246,17 @@ public class ConfigCustomerDB
 
 	}
 
-	//Add Object to their matching database
-	public void addToDataBase(Object object)
+	//Get the next primary key in the customer table
+	public int getNextCustomerId()
 	{
-		System.out.println("Adding " + object.toString());
 		Transaction transaction = null;
-		try (
-				Session session = HibernateUtil.getSessionFactory().openSession())
+		int customerID = 0;
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
-			transaction = session.beginTransaction();
-
-			session.save(object);
-
-			transaction.commit();
+			session.beginTransaction();
+			String queryString = "select max(customer.CustomerID) from hds.customer";
+			List customerIDResult = session.createSQLQuery(queryString).list();
+			customerID = Integer.parseInt(customerIDResult.get(0).toString()) + 1;
 
 		}catch(Exception e)
 		{
@@ -211,30 +266,7 @@ public class ConfigCustomerDB
 			}
 			e.printStackTrace();
 		}
-	}
-
-	//Update Object in their corresponding table
-	public void updateDatabase(Object object)
-	{
-		System.out.println("Updating " + object.toString());
-		Transaction transaction = null;
-		try (
-				Session session = HibernateUtil.getSessionFactory().openSession())
-		{
-			transaction = session.beginTransaction();
-
-			session.update(object);
-
-			transaction.commit();
-
-		}catch(Exception e)
-		{
-			if(transaction != null)
-			{
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
+		return customerID;
 	}
 
 	//Delete customer with matching ID from customer table
@@ -261,29 +293,5 @@ public class ConfigCustomerDB
 		}
 	}
 
-	////Delete address with matching ID from address table
-	public void deleteAddress(int idToDoList)
-	{
-		Transaction transaction = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession())
-		{
-			transaction = session.beginTransaction();
-
-			AddressPojo addressPojo = session.get(AddressPojo.class, idToDoList);
-			if(addressPojo != null)
-			{
-				session.delete(addressPojo);
-			}
-
-			transaction.commit();
-		}catch(Exception e)
-		{
-			if(transaction != null)
-			{
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
-	}
 }
 

@@ -2,7 +2,7 @@ package com.hds.controller;
 
 import com.hds.model.CustomerPojo;
 import com.hds.model.ProductPojo;
-import com.hds.util.ConfigDatabase;
+import com.hds.util.ConfigProductDB;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,11 +17,11 @@ import java.util.List;
 public class InventoryServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	private ConfigDatabase configDatabase;
+	private ConfigProductDB configProductDB;
 
 	public void init()
 	{
-		configDatabase = new ConfigDatabase();
+		configProductDB = new ConfigProductDB();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -29,7 +29,7 @@ public class InventoryServlet extends HttpServlet
 		if(request.getParameter("Inventory") != null)
 		{
 			List<ProductPojo> productList;
-			productList = configDatabase.inventoryViewDB();
+			productList = configProductDB.inventoryViewDB();
 
 			request.setAttribute("productList", productList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/inventory.jsp");
@@ -41,7 +41,7 @@ public class InventoryServlet extends HttpServlet
 			int productId = Integer.parseInt(request.getParameter("id"));
 
 			List<ProductPojo> productList;
-			productList = configDatabase.editProduct(productId);
+			productList = configProductDB.editInventoryView(productId);
 
 			request.setAttribute("productList", productList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/editInventory.jsp");
@@ -54,7 +54,7 @@ public class InventoryServlet extends HttpServlet
 	{
 		if(request.getParameter("Add New Product") != null)
 		{
-			int product_id = configDatabase.getNextProductId();
+			int product_id = configProductDB.getNextProductId();
 			System.out.println("product_id = " + product_id);
 			int brand_id = Integer.parseInt(request.getParameter("productBrand"));
 			System.out.println("brand_id = " + brand_id);
@@ -77,10 +77,10 @@ public class InventoryServlet extends HttpServlet
 
 			ProductPojo productPojo = new ProductPojo( product_id,  brand_id,   category_id,  inventory_count,
 			 model_num,  serial_num,  description,  cost,  list_price,  is_active);
-			configDatabase.addToDataBase(productPojo);
+			configProductDB.addToDataBase(productPojo);
 
 			List<ProductPojo> productList;
-			productList = configDatabase.inventoryViewDB();
+			productList = configProductDB.inventoryViewDB();
 
 			request.setAttribute("productList", productList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/inventory.jsp");
@@ -88,7 +88,7 @@ public class InventoryServlet extends HttpServlet
 		}
 		if(request.getParameter("Update Product") != null)
 		{
-			int product_id = configDatabase.getNextProductId();
+			int product_id = configProductDB.getNextProductId();
 			System.out.println("product_id = " + product_id);
 			int brand_id = Integer.parseInt(request.getParameter("productBrand"));
 			System.out.println("brand_id = " + brand_id);
@@ -111,10 +111,10 @@ public class InventoryServlet extends HttpServlet
 
 			ProductPojo productPojo = new ProductPojo( product_id,  brand_id,   category_id,  inventory_count,
 					model_num,  serial_num,  description,  cost,  list_price,  is_active);
-			configDatabase.updateDatabase(productPojo);
+			configProductDB.updateDatabase(productPojo);
 
 			List<ProductPojo> productList;
-			productList = configDatabase.inventoryViewDB();
+			productList = configProductDB.inventoryViewDB();
 
 			request.setAttribute("productList", productList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/inventory.jsp");
