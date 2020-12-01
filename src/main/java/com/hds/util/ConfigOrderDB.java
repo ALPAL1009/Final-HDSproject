@@ -248,14 +248,6 @@ public class ConfigOrderDB
 		{
 			session.beginTransaction();
 			String queryString = "SELECT \n" +
-					"    o.OrderID,\n" +
-					"    o.CustomerID,\n" +
-					"    c.Lastname,\n" +
-					"    c.FirstName,\n" +
-					"    a.Street,\n" +
-					"    a.city,\n" +
-					"    a.State,\n" +
-					"    a.zip,\n" +
 					"    p.ProductID,\n" +
 					"    pb.ProductName,\n" +
 					"    p.ModelNum,\n" +
@@ -270,33 +262,23 @@ public class ConfigOrderDB
 					"JOIN hds.productorderitem poi ON o.OrderID = poi.OrderID\n" +
 					"JOIN hds.product p ON poi.ProductID = p.ProductID\n" +
 					"JOIN hds.productbrand pb ON p.BrandID = pb.BrandID\n" +
-					"JOIN hds.customer c ON c.CustomerID = o.CustomerID\n" +
-					"JOIN hds.address a ON a.addressId = o.AddressID\n" +
-					"WHERE o.OrderID = " + orderId;
+					"WHERE o.OrderID = 2;" + orderId;
 
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
 			for(Object[] row : rows)
 			{
 				OrderPojo order = new OrderPojo();
-				order.setOrder_id(Integer.parseInt(row[0].toString()));
-				order.setCustomer_id(Integer.parseInt(row[1].toString()));
-				order.setLastName(row[2].toString());
-				order.setFirstName(row[3].toString());
-				order.setStreet(row[4].toString());
-				order.setCity(row[5].toString());
-				order.setState(row[6].toString());
-				order.setZip(Integer.parseInt(row[7].toString()));
-				order.setProductID(Integer.parseInt(row[8].toString()));
-				order.setProductName(row[9].toString());
-				order.setModelNum(row[10].toString());
-				order.setSerialNum(Integer.parseInt(row[11].toString()));
-				order.setDescription(row[12].toString());
-				order.setListPrice(Integer.parseInt(row[13].toString()));
-				order.setQuantity(Integer.parseInt(row[14].toString()));
-				order.setShipping_cost(Integer.parseInt(row[15].toString()));
-				order.setExactCost(Integer.parseInt(row[16].toString()));
-				order.setTotal_cost(Integer.parseInt(row[17].toString()));
+				order.setProductID(Integer.parseInt(row[0].toString()));
+				order.setProductName(row[1].toString());
+				order.setModelNum(row[2].toString());
+				order.setSerialNum(Integer.parseInt(row[3].toString()));
+				order.setDescription(row[4].toString());
+				order.setListPrice(Integer.parseInt(row[5].toString()));
+				order.setQuantity(Integer.parseInt(row[6].toString()));
+				order.setShipping_cost(Integer.parseInt(row[7].toString()));
+				order.setExactCost(Integer.parseInt(row[8].toString()));
+				order.setTotal_cost(Integer.parseInt(row[9].toString()));
 				orderList.add(order);
 			}
 
