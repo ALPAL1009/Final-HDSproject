@@ -51,7 +51,6 @@ public class CustomerServlet extends HttpServlet
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/editCustomerRecords.jsp");
 			rd.forward(request, response);
 		}
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
