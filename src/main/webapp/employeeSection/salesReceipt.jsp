@@ -78,7 +78,7 @@
             <img src="../view/images/orderEntryImage.jpg" alt="HDS logo">
             <br><br>
 
-            <div>
+            <div id="customerInfo">
                 Customer #:${param.customer_id}
                 <br><br>
                 ${param.lastName},${param.first}<br>

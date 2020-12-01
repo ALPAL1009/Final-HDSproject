@@ -94,65 +94,33 @@
             <br>
             <br>
             <div id="customerInfo">
-                <form action="statementServlet" method="GET">
-                    Customer #:<label><input type="text" name="cusID" value=""></label>
-                    <input type="submit" Name="Update Customer" value="update"><br><br>
-                    (customerServlet GET customer info)
-                    <br>
-                    <br>
-                    Name:(cus.firstName)+(cus.lastName)${cus.firstName}${cus.lastName}<br>
-                    Address: (cus.address)${cus.address}<br>
-                    City: (cus.city)${cus.city} State: (cus.state)${cus.state}
-                    Zip:(cus.zip)${cus.zip}
-                </form>
-                Year: <jsp:include page="/templates/selectYear.html"></jsp:include>
-                <form action="statementServlet" method="GET">
-                    Month:
-                    <jsp:include page="../templates/selectMonth.html"></jsp:include>
-                    <input type="submit" Name="Get Orders" value="update">
-                </form>
+                Customer #:${param.customer_id}
+                <br><br>
+                Prepared for: ${param.lastName},${param.first}<br>
+                Address: ${param.street}<br>
+                ${param.city}, ${param.state}<br>${param.zip}
+                <br>
+                Email: ${param.email}
+                <br><br>
             </div>
-            (servlet GET query the database)<br>
-            where customer.id = customer# and month = selected month and year = input year
+
             <div id="statement table">
                 <table>
                     <tr>
-                        <th>Date</th>
-                        <th>Bill Number</th>
-                        <th>Payment</th>
-                        <th>Description</th>
-                        <th>Total</th>
+                        <th>Order ID</th>
+                        <th>Ordered Date</th>
+                        <th>Total Cost</th>
+                        <th>Account Balance</th>
                     </tr>
-                    <tr>
-                        <c:forEach var="order" items="${orderList}">
-                            <td>${order.date}</td>
-                            <td>${order.billNum}</td>
-                            <td>${order.payment}</td>
-                            <td>${order.description}</td>
-                            <td>${order.total}</td>
-                        </c:forEach>
-                    </tr>
-                    <tr>
-                        <td>order.date</td>
-                        <td>order.billNum</td>
-                        <td>order.payment</td>
-                        <td>order.description</td>
-                        <td>order.total</td>
-                    </tr>
-                    <tr>
-                        <td>order2.date</td>
-                        <td>order2.billNum</td>
-                        <td>order2.payment</td>
-                        <td>order2.description</td>
-                        <td>order2.total</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>and so on..</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <c:forEach var="orderList" items="${orderList}">
+                        <tr>
+
+                            <td>${orderList.order_id}</td>
+                            <td>${orderList.date_ordered}</td>
+                            <td>${orderList.total_cost}</td>
+                            <td>${orderList.accountBalance}</td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
             <div id="statement bottom">
@@ -160,11 +128,15 @@
             </div>
             <br>
             <div id="statement finePrint">
-                *The total amount is payable on or before the 15th of the current month.
-                Any
-                bills not
-                paid
-                by the 15th will incur a $100 late payment charge.
+                *Terms & Conditions
+                This statement must be paid on or before the 15th of the current month.
+                Any bills not paid by the 15th will incur a $100 late payment charge.
+                Invoices must contain the purchase order number and include complete
+                supporting information required by HDS in order to be considered valid.
+                Should HDS specify such changes and apply different terms and conditions,
+                those terms and conditions will override the purchase order terms and
+                conditions will apply instead of these.
+
             </div>
         </div>
     </div>

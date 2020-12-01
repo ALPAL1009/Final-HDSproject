@@ -81,6 +81,41 @@ public class OrderServlet extends HttpServlet
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/salesReceipt.jsp");
 			rd.forward(request, response);
 		}
+		if(request.getParameter("Owe Money") != null)
+		{
+			List<OrderPojo> orderList;
+			orderList = configOrderDB.oweMoneyView();
+
+			request.setAttribute("orderList", orderList);
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/listCustomerBalance.jsp");
+			rd.forward(request, response);
+		}
+		if(request.getParameter("Get Owe") != null)
+		{
+			int customer_id =Integer.parseInt(request.getParameter("customer_id"));
+			String lastName = request.getParameter("lastName");
+			String first = request.getParameter("first");
+			String street = request.getParameter("first");
+			String city = request.getParameter("first");
+			String state = request.getParameter("first");
+			String zip = request.getParameter("first");
+			String date_ordered = request.getParameter("date_ordered");
+
+			List<OrderPojo> orderList;
+			orderList = configOrderDB.statementView(customer_id);
+
+			request.setAttribute("customer_id", customer_id);
+			request.setAttribute("first", first);
+			request.setAttribute("lastName", lastName);
+			request.setAttribute("street", street);
+			request.setAttribute("city", city);
+			request.setAttribute("state", state);
+			request.setAttribute("zip", zip);
+			request.setAttribute("date_ordered", date_ordered);
+			request.setAttribute("orderList", orderList);
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/statement.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

@@ -1,16 +1,12 @@
 package com.hds.util;
 
 import com.hds.model.OrderPojo;
-import com.hds.model.ProductPojo;
-import com.hds.model.Receipt;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class ConfigOrderDB
@@ -279,6 +275,102 @@ public class ConfigOrderDB
 				order.setShipping_cost(Integer.parseInt(row[7].toString()));
 				order.setExactCost(Integer.parseInt(row[8].toString()));
 				order.setTotal_cost(Integer.parseInt(row[9].toString()));
+				orderList.add(order);
+			}
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return orderList;
+	}
+
+	public List<OrderPojo> oweMoneyView()
+	{
+		Transaction transaction = null;
+		List orderList = new ArrayList<OrderPojo>();
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT \n" +
+					"    o.CustomerID,\n" +
+					"    c.LastName,\n" +
+					"    c.FirstName,\n" +
+					"    a.Street,\n" +
+					"    a.City,\n" +
+					"    a.State,\n" +
+					"    a.zip,\n" +
+					"    c.Email,\n" +
+					"    o.OrderID,\n" +
+					"    o.DateOrdered,\n" +
+					"    o.TotalCost,\n" +
+					"    c.AccountBalance\n" +
+					"FROM hds.order o\n" +
+					"join hds.customer c on o.CustomerID = c.CustomerID\n" +
+					"join hds.address a on o.AddressID = a.AddressID;";
+
+			SQLQuery query = session.createSQLQuery(queryString);
+			List<Object[]> rows = query.list();
+			for(Object[] row : rows)
+			{
+				OrderPojo order = new OrderPojo();
+				order.setCustomer_id(Integer.parseInt(row[0].toString()));
+				order.setLastName(row[1].toString());
+				order.setFirstName(row[2].toString());
+				order.setStreet(row[3].toString());
+				order.setCity(row[4].toString());
+				order.setState(row[5].toString());
+				order.setZip(Integer.parseInt(row[6].toString()));
+				if(row[7] != null)
+					order.setEmail(row[7].toString());
+				order.setOrder_id(Integer.parseInt(row[8].toString()));
+				order.setDate_ordered(LocalDate.parse(row[9].toString()));
+				order.setTotal_cost(Integer.parseInt(row[10].toString()));
+				order.setAccountBalance(Integer.parseInt(row[11].toString()));
+				orderList.add(order);
+			}
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return orderList;
+	}
+
+	public List<OrderPojo> statementView(int orderId)
+	{
+		Transaction transaction = null;
+		List orderList = new ArrayList<OrderPojo>();
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT \n" +
+					"    o.OrderID,\n" +
+					"    o.DateOrdered,\n" +
+					"    o.TotalCost,\n" +
+					"    c.AccountBalance\n" +
+					"FROM hds.order o\n" +
+					"join hds.customer c on o.CustomerID = c.CustomerID\n" +
+					"join hds.address a on o.AddressID = a.AddressID\n" +
+					"where o.CustomerID = " + orderId;
+
+			SQLQuery query = session.createSQLQuery(queryString);
+			List<Object[]> rows = query.list();
+			for(Object[] row : rows)
+			{
+				OrderPojo order = new OrderPojo();
+				order.setOrder_id(Integer.parseInt(row[0].toString()));
+				order.setDate_ordered(LocalDate.parse(row[1].toString()));
+				order.setTotal_cost(Integer.parseInt(row[2].toString()));
+				order.setAccountBalance(Integer.parseInt(row[3].toString()));
 				orderList.add(order);
 			}
 

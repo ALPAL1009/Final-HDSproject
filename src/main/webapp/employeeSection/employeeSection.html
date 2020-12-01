@@ -96,11 +96,13 @@
                     </form>
                 </li>
                 <li>
-                    <a href="../employeeSection/monthlyStatement.jsp">Monthly Statements</a>
+                    <form action="/orderServlet" method="POST">
+                        <input type="submit" Name="Owe Money" value="Statement">
+                    </form>
                 </li>
                 <li>
                     <form action="/orderServlet" method="POST">
-                        <input type="submit" Name="Get Customer Order" value="Get Customer Order">
+                        <input type="submit" Name="Get Customer Order" value="Get Customer Receipt">
                     </form>
                 </li>
                 <li>

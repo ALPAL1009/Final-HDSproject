@@ -43,8 +43,9 @@ public class OrderPojo {
 
     private String lastName;
 
-    private int productID;
+    private String email;
 
+    private int productID;
 
     private String productName;
 
@@ -60,6 +61,7 @@ public class OrderPojo {
 
     private int exactCost;
 
+    private int accountBalance;
 
     // Getter Setter methods
 
@@ -258,5 +260,25 @@ public class OrderPojo {
     public void setExactCost(int exactCost)
     {
         this.exactCost = exactCost;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public void setAccountBalance(int accountBalance)
+    {
+        this.accountBalance = accountBalance;
+    }
+
+    public int getAccountBalance()
+    {
+        return accountBalance;
     }
 }
