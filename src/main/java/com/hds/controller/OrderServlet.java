@@ -1,9 +1,8 @@
 package com.hds.controller;
 
-import com.hds.model.CustomerPojo;
+
 import com.hds.model.OrderPojo;
-import com.hds.model.Receipt;
-import com.hds.util.ConfigCustomerDB;
+
 import com.hds.util.ConfigOrderDB;
 
 import javax.servlet.RequestDispatcher;
