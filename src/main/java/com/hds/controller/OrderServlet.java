@@ -45,7 +45,15 @@ public class OrderServlet extends HttpServlet
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/editOrderRecords.jsp");
 			rd.forward(request, response);
 		}
+		if(request.getParameter("Get Customer Order") != null)
+		{
+			List<OrderPojo> orderList;
+			orderList = configOrderDB.customerOrderView();
 
+			request.setAttribute("orderList", orderList);
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/listCustomerOrders.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

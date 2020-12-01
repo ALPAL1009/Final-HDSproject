@@ -39,6 +39,10 @@ public class OrderPojo {
 
     private int zip;
 
+    private String firstName;
+
+    private String lastName;
+
     // Getter Setter methods
 
 
@@ -136,5 +140,25 @@ public class OrderPojo {
     public void setZip(int zip)
     {
         this.zip = zip;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
     }
 }

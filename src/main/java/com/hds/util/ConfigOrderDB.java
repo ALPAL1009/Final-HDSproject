@@ -196,5 +196,40 @@ public class ConfigOrderDB
 	{
 
 	}
+
+	public List<OrderPojo> customerOrderView()
+	{
+		Transaction transaction = null;
+		List orderList = new ArrayList<OrderPojo>();
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT \n" +
+					"    o.CustomerID,c.LastName, c.FirstName, o.OrderID\n" +
+					"FROM hds.order o\n" +
+					"JOIN hds.customer c ON o.CustomerID = c.CustomerID;";
+
+			SQLQuery query = session.createSQLQuery(queryString);
+			List<Object[]> rows = query.list();
+			for(Object[] row : rows)
+			{
+				OrderPojo order = new OrderPojo();
+				order.setCustomer_id(Integer.parseInt(row[0].toString()));
+				order.setFirstName(row[1].toString());
+				order.setLastName(row[2].toString());
+				order.setOrder_id(Integer.parseInt(row[3].toString()));
+				orderList.add(order);
+			}
+
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return orderList;
+	}
 }
 

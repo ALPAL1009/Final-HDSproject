@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 <head>
-    <!--    CSS   -->
+
+    <!--CSS-->
     <link rel="stylesheet" href="../view/css/style.css">
     <link rel="stylesheet" href="../view/css/employeeSection.css">
 
     <!--    External Font for Header    -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 
-    <title>Employee Section</title>
+
+    <title>Customer Records Page</title>
 </head>
 <body>
 
-<!--        Employee Section     -->
-<div class="employeeSection">
+
+<!--     Customer Records Page    -->
+<div class="customerRecords">
 
     <!--      Navbar    -->
     <div class="nav">
@@ -40,14 +44,16 @@
                     <li><a href="../html-appliances/cabinets.html">Cabinets</a></li>
                     <li><a href="../html-appliances/lighting.html">Lighting</a></li>
                     <li><a href="../html-appliances/plumbing.html">Plumbing</a></li>
-                    <li><a href="../html-appliances/ct_ft.html">Countertops & FloorTile</a></li>
+                    <li><a href="../html-appliances/ct_ft.html">Countertops &
+                        FloorTile</a></li>
                 </ul>
             </li>
 
             <li><a href="#">Locations</a>
                 <ul>
                     <li><a href="../html-locations/phoenix.html">Phoenix, AZ</a></li>
-                    <li><a href="../html-locations/scottsdale.html">Scottsdale, AZ</a></li>
+                    <li><a href="../html-locations/scottsdale.html">Scottsdale, AZ</a>
+                    </li>
                     <li><a href="../html-locations/tucson.html">Tucson, AZ</a></li>
                     <li><a href="../html-locations/lv.html">Las Vegas, NV</a></li>
                     <li><a href="../html-locations/al.html">Albuquerque, NM</a></li>
@@ -64,53 +70,39 @@
         </ul>
     </div>
 
-    <div class="employeeSection-content">
+    <div class="customerRecords-content">
 
-        <h1>Employee Section<br><br></h1>
+        <h1>List of Customers with Orders<br><br></h1>
 
-        <div class="servletList">
-            <ul>
-                <li>
-                    <form action="/customerServlet" method="POST">
-                        <input type="submit" Name="Customer Records" value="Customer Records">
-                    </form>
-                </li>
-                <li>
-                    <form action="/employeeRecordsServlet" method="POST">
-                        <input type="submit" Name="Employee Records" value="Employee Records">
-                    </form>
-                </li>
-                <li>
-                    <form action="/inventoryServlet" method="POST">
-                        <input type="submit" Name="Inventory" value="Inventory">
-                    </form>
-                </li>
-                <li>
-                    <form action="/orderServlet" method="POST">
-                        <input type="submit" Name="Order Records" value="Order Records">
-                    </form>
-                </li>
-                <li>
-                    <form action="/jobsForBidServlet" method="POST">
-                        <input type="submit" Name="Jobs for Bid" value="Jobs for Bid">
-                    </form>
-                </li>
-                <li>
-                    <a href="../employeeSection/monthlyStatement.jsp">Monthly Statements</a>
-                </li>
-                <li>
-                    <form action="/orderServlet" method="POST">
-                        <input type="submit" Name="Get Customer Order" value="Get Customer Order">
-                    </form>
-                </li>
-                <li>
-                    <a href="../employeeSection/saleSummary.jsp">Sales Summary</a>
-                </li>
 
-            </ul>
-        </div>
+        <table id="recordTable">
+            <tr>
+                <th>Customer ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Order Number</th>
+                <th></th>
+            </tr>
+
+            <c:forEach var="orderList" items="${orderList}">
+                <tr>
+                    <td>${orderList.customer_id}</td>
+                    <td>${orderList.lastName}</td>
+                    <td>${orderList.firstName}</td>
+                    <td>${orderList.order_id}</td>
+                    <td>
+                        <form action="../customerServlet" method="POST">
+                            <input type="hidden" name="id"
+                                   value="<c:out value='${orderList.order_id}' />"/>
+                            <input type="submit" name="Get Order" value="Get Order">
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+
+        </table>
+
     </div>
-
 </div>
 
 <footer>
@@ -124,6 +116,11 @@
         Fax: 602-555-1212
     </p>
 </footer>
+<script>
+
+</script>
 
 </body>
 </html>
+
+
