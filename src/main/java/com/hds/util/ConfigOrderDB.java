@@ -262,7 +262,7 @@ public class ConfigOrderDB
 					"JOIN hds.productorderitem poi ON o.OrderID = poi.OrderID\n" +
 					"JOIN hds.product p ON poi.ProductID = p.ProductID\n" +
 					"JOIN hds.productbrand pb ON p.BrandID = pb.BrandID\n" +
-					"WHERE o.OrderID = 2;" + orderId;
+					"WHERE o.OrderID = " + orderId;
 
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
