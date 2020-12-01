@@ -79,59 +79,42 @@
             <br><br>
 
             <div>
-                <form action="customerServlet" method="GET">
-                    Customer #:<label><input type="text" name="cusID" value=""></label>
-                    <input type="submit" Name="Get Customer" value="Get Customer"><br><br>
-                    Name:${cus.firstName}${cus.lastName}(cus.firstName)+(cus.lastName)<br>
-                    Address:${cus.address}(cus.address)<br>
-                    City: ${cus.city}(cus.city) State: ${cus.state}(cus.state)
-                    Zip:${cus.zip}(cus.zip)
-                </form>
-                <br>
-                <label for="saleDate">Date:</label>
-
-                <input type="date" id="saleDate" name="saleDate"
-                       value=""
-                       min="2020-01-01" max="2021-12-31">
+                Customer #:${param.customer_id}
+                <br><br>
+                ${param.lastName},${param.first}<br>
+                ${param.street}<br>
+                ${param.city}, ${param.state}<br>${param.zip}
+                <br> <br>
+                Order Date: ${param.date_ordered}
                 <br><br>
             </div>
             <div>
                 <table id="topTable">
                     <tr>
-                        <th>ITEM</th>
+                        <th>PRODUCT ID</th>
+                        <th>PRODUCT NAME</th>
+                        <th>MODEL NUMBER</th>
+                        <th>SERIAL NUMBER</th>
                         <th>DESCRIPTION</th>
+                        <th>LIST PRICE</th>
                         <th>QUANTITY</th>
-                        <th>COST</th>
+                        <th>DELIVERY COST</th>
                         <th>EXACT COST</th>
-                        <th>ADD/REMOVE</th>
                     </tr>
 
                     <tr>
-                        <%--item column--%>
-                        <td> product.id
-                            <form action="customerServlet" method="GET">
-                                <label> <input type="text" name="product.id"
-                                               value=""></label>
-                                <input type="submit" Name="Get Product"
-                                       value="Get Product">
-                            </form>
-                        </td>
-                        <%--<c:forEach var="product" items="${listProduct}">--%>
-                        <td>${product.description}product.description</td>
-                        <td>
-                            <label>
-                                <input id="quantityInput" type="number" min="0">
-                            </label>
-                        </td>
-                        <td>${product.cost}product.cost</td>
-                        <td id="display">
-                            JS code to receive quantity amount and (*) product.cost
-                        </td>
-                        <td>
-                            <button onclick="myCreateFunction()">Add</button>
-                        </td>
-
+                        <c:forEach var="order" items="${order}">
+                        <td>${order.productID}</td>
+                        <td>${order.productName}</td>
+                        <td>${order.modelNum}</td>
+                        <td>${order.serialNum}</td>
+                        <td>${order.description}</td>
+                        <td>${order.listPrice}</td>
+                        <td>${order.quantity}</td>
+                        <td>${order.shipping_cost}</td>
+                        <td>${order.exactCost}</td>
                     </tr>
+                    </c:forEach>
                 </table>
 
                 <table id="bottomTable">

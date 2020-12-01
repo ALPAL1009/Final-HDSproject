@@ -91,7 +91,23 @@
                     <td>${orderList.firstName}</td>
                     <td>${orderList.order_id}</td>
                     <td>
-                        <form action="../customerServlet" method="POST">
+                        <form action="../orderServlet" method="POST">
+                            <input type="hidden" name="customer_id"
+                                   value="<c:out value='${orderList.customer_id}' />"/>
+                            <input type="hidden" name="lastName"
+                                   value="<c:out value='${orderList.lastName}' />"/>
+                            <input type="hidden" name="first"
+                                   value="<c:out value='${orderList.firstName}' />"/>
+                            <input type="hidden" name="street"
+                                   value="<c:out value='${orderList.street}' />"/>
+                            <input type="hidden" name="city"
+                                   value="<c:out value='${orderList.city}' />"/>
+                            <input type="hidden" name="state"
+                                   value="<c:out value='${orderList.state}' />"/>
+                            <input type="hidden" name="zip"
+                                   value="<c:out value='${orderList.zip}' />"/>
+                            <input type="hidden" name="date_ordered"
+                                   value="<c:out value='${orderList.date_ordered}' />"/>
                             <input type="hidden" name="id"
                                    value="<c:out value='${orderList.order_id}' />"/>
                             <input type="submit" name="Get Order" value="Get Order">

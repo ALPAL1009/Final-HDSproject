@@ -43,6 +43,24 @@ public class OrderPojo {
 
     private String lastName;
 
+    private int productID;
+
+
+    private String productName;
+
+    private String modelNum;
+
+    private int serialNum;
+
+    private String description;
+
+    private int listPrice;
+
+    private int quantity;
+
+    private int exactCost;
+
+
     // Getter Setter methods
 
 
@@ -160,5 +178,85 @@ public class OrderPojo {
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
+    }
+
+    public int getProductID()
+    {
+        return productID;
+    }
+
+    public void setProductID(int productID)
+    {
+        this.productID = productID;
+    }
+
+    public String getProductName()
+    {
+        return productName;
+    }
+
+    public void setProductName(String productName)
+    {
+        this.productName = productName;
+    }
+
+    public String getModelNum()
+    {
+        return modelNum;
+    }
+
+    public void setModelNum(String modelNum)
+    {
+        this.modelNum = modelNum;
+    }
+
+    public int getSerialNum()
+    {
+        return serialNum;
+    }
+
+    public void setSerialNum(int serialNum)
+    {
+        this.serialNum = serialNum;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public int getListPrice()
+    {
+        return listPrice;
+    }
+
+    public void setListPrice(int listPrice)
+    {
+        this.listPrice = listPrice;
+    }
+
+    public int getQuantity()
+    {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity)
+    {
+        this.quantity = quantity;
+    }
+
+    public int getExactCost()
+    {
+        return exactCost;
+    }
+
+    public void setExactCost(int exactCost)
+    {
+        this.exactCost = exactCost;
     }
 }

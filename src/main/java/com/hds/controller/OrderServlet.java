@@ -2,6 +2,7 @@ package com.hds.controller;
 
 import com.hds.model.CustomerPojo;
 import com.hds.model.OrderPojo;
+import com.hds.model.Receipt;
 import com.hds.util.ConfigCustomerDB;
 import com.hds.util.ConfigOrderDB;
 
@@ -52,6 +53,32 @@ public class OrderServlet extends HttpServlet
 
 			request.setAttribute("orderList", orderList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/listCustomerOrders.jsp");
+			rd.forward(request, response);
+		}
+		if(request.getParameter("Get Order") != null)
+		{
+			int customer_id =Integer.parseInt(request.getParameter("customer_id"));
+			String lastName = request.getParameter("lastName");
+			String first = request.getParameter("first");
+			String street = request.getParameter("first");
+			String city = request.getParameter("first");
+			String state = request.getParameter("first");
+			String zip = request.getParameter("first");
+			String date_ordered = request.getParameter("date_ordered");
+			int orderId = Integer.parseInt(request.getParameter("id"));
+			List<OrderPojo> order;
+			order = configOrderDB.receiptOrderView(orderId);
+
+			request.setAttribute("customer_id", customer_id);
+			request.setAttribute("first", first);
+			request.setAttribute("lastName", lastName);
+			request.setAttribute("street", street);
+			request.setAttribute("city", city);
+			request.setAttribute("state", state);
+			request.setAttribute("zip", zip);
+			request.setAttribute("date_ordered", date_ordered);
+			request.setAttribute("order", order);
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/salesReceipt.jsp");
 			rd.forward(request, response);
 		}
 	}
