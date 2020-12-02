@@ -117,8 +117,8 @@
 
                             <td>${orderList.order_id}</td>
                             <td>${orderList.date_ordered}</td>
-                            <td>${orderList.total_cost}</td>
-                            <td>${orderList.accountBalance}</td>
+                            <td>$${orderList.total_cost}</td>
+                            <td>$${orderList.accountBalance}</td>
                         </tr>
                     </c:forEach>
                 </table>

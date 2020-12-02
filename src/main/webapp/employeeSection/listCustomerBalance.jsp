@@ -72,8 +72,7 @@
 
     <div class="customerRecords-content">
 
-        <h1>List of Customers owing money<br><br></h1>
-
+        <h1>Customers with outstanding balances<br><br></h1>
 
         <table id="recordTable">
             <tr>
@@ -110,14 +109,12 @@
                                    value="<c:out value='${orderList.order_id}' />"/>
                             <input type="hidden" name="id"
                                    value="<c:out value='${orderList.email}' />"/>
-                            <input type="submit" name="Get Owe" value="Get Owe">
+                            <input type="submit" name="Get Statement" value="Get Statement">
                         </form>
                     </td>
                 </tr>
             </c:forEach>
-
         </table>
-
     </div>
 </div>
 

@@ -81,16 +81,16 @@ public class OrderServlet extends HttpServlet
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/salesReceipt.jsp");
 			rd.forward(request, response);
 		}
-		if(request.getParameter("Owe Money") != null)
+		if(request.getParameter("Outstanding Balances ") != null)
 		{
 			List<OrderPojo> orderList;
-			orderList = configOrderDB.oweMoneyView();
+			orderList = configOrderDB.outstandingBalancesView();
 
 			request.setAttribute("orderList", orderList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/listCustomerBalance.jsp");
 			rd.forward(request, response);
 		}
-		if(request.getParameter("Get Owe") != null)
+		if(request.getParameter("Get Statement") != null)
 		{
 			int customer_id =Integer.parseInt(request.getParameter("customer_id"));
 			String lastName = request.getParameter("lastName");

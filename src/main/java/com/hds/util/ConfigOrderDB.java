@@ -291,7 +291,7 @@ public class ConfigOrderDB
 		return orderList;
 	}
 
-	public List<OrderPojo> oweMoneyView()
+	public List<OrderPojo> outstandingBalancesView()
 	{
 		Transaction transaction = null;
 		List orderList = new ArrayList<OrderPojo>();
@@ -299,21 +299,13 @@ public class ConfigOrderDB
 		{
 			session.beginTransaction();
 			String queryString = "SELECT \n" +
-					"    o.CustomerID,\n" +
-					"    c.LastName,\n" +
-					"    c.FirstName,\n" +
-					"    a.Street,\n" +
-					"    a.City,\n" +
-					"    a.State,\n" +
-					"    a.zip,\n" +
-					"    c.Email,\n" +
-					"    o.OrderID,\n" +
-					"    o.DateOrdered,\n" +
-					"    o.TotalCost,\n" +
-					"    c.AccountBalance\n" +
+					"o.customerId,c.LastName,c.FirstName,\n" +
+					"a.Street,a.City,a.state,a.zip,c.email,\n" +
+					"o.OrderID, o.DateOrdered, o.TotalCost, c.AccountBalance\n" +
 					"FROM hds.order o\n" +
-					"join hds.customer c on o.CustomerID = c.CustomerID\n" +
-					"join hds.address a on o.AddressID = a.AddressID;";
+					"JOIN hds.customer c ON o.CustomerID = c.CustomerID\n" +
+					"JOIN hds.address a ON o.AddressID = a.AddressID\n" +
+					"where c.AccountBalance > 0;";
 
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
