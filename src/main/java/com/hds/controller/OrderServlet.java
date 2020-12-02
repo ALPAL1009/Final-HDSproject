@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet(name = "orderServlet",urlPatterns = "/orderServlet")
@@ -114,6 +115,30 @@ public class OrderServlet extends HttpServlet
 			request.setAttribute("date_ordered", date_ordered);
 			request.setAttribute("orderList", orderList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/statement.jsp");
+			rd.forward(request, response);
+		}
+		if(request.getParameter("Sale Summary") != null)
+		{
+			List<OrderPojo> saleList;
+			saleList = configOrderDB.saleSummaryView();
+
+			request.setAttribute("saleList", saleList);
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/saleSummary.jsp");
+			rd.forward(request, response);
+		}
+		if(request.getParameter("Narrow Orders") != null)
+		{
+			String startDate = LocalDate.parse(request.getParameter("startDate")).toString();
+			String endDate = request.getParameter("endDate");
+			System.out.println(startDate);
+
+			List<OrderPojo> saleList;
+			saleList = configOrderDB.narrowSaleSummaryView(startDate,endDate);
+
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDate);
+			request.setAttribute("saleList", saleList);
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/saleSummary.jsp");
 			rd.forward(request, response);
 		}
 	}

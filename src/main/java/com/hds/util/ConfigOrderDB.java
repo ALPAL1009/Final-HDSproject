@@ -193,7 +193,6 @@ public class ConfigOrderDB
 	{
 
 	}
-
 	public List<OrderPojo> customerOrderView()
 	{
 		Transaction transaction = null;
@@ -367,7 +366,6 @@ public class ConfigOrderDB
 				order.setAccountBalance(Integer.parseInt(row[3].toString()));
 				orderList.add(order);
 			}
-
 		}catch(Exception e)
 		{
 			if(transaction != null)
@@ -377,6 +375,73 @@ public class ConfigOrderDB
 			e.printStackTrace();
 		}
 		return orderList;
+	}
+
+	public List<OrderPojo> saleSummaryView()
+	{
+		Transaction transaction = null;
+		List saleList = new ArrayList<OrderPojo>();
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT \n" +
+					"    o.OrderID,\n" +
+					"    o.TotalCost\n" +
+					"FROM\n" +
+					"    hds.order o;";
+
+			SQLQuery query = session.createSQLQuery(queryString);
+			List<Object[]> rows = query.list();
+			for(Object[] row : rows)
+			{
+				OrderPojo sale = new OrderPojo();
+				sale.setOrder_id(Integer.parseInt(row[0].toString()));
+				sale.setTotal_cost(Integer.parseInt(row[1].toString()));
+				saleList.add(sale);
+			}
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return saleList;
+	}
+
+	public List<OrderPojo> narrowSaleSummaryView(String startDate, String endDate)
+	{
+
+		Transaction transaction = null;
+		List saleList = new ArrayList<OrderPojo>();
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			session.beginTransaction();
+			String queryString = "SELECT \n" +
+					"    o.OrderID,\n" +
+					"    o.TotalCost\n" +
+					"FROM hds.order o\n" +
+					"where o.DateOrdered between'"+startDate+"'and '"+endDate+"';";
+
+			SQLQuery query = session.createSQLQuery(queryString);
+			List<Object[]> rows = query.list();
+			for(Object[] row : rows)
+			{
+				OrderPojo sale = new OrderPojo();
+				sale.setOrder_id(Integer.parseInt(row[0].toString()));
+				sale.setTotal_cost(Integer.parseInt(row[1].toString()));
+				saleList.add(sale);
+			}
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return saleList;
 	}
 }
 

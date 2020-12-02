@@ -63,7 +63,7 @@
             <!--    Gallery Images      -->
             <li><a href="../html-gallery/gallery.html">Our Work</a></li>
 
-            <li><a href="../employeeSection/employeeSection.html">Employee</a>
+            <li><a href="../employeeSection/loginPage.html">Employee Log in</a>
 
             <li><a href="../html-faq/faq.html">FAQs</a>
 
@@ -77,13 +77,14 @@
         <div id="dateRange">
             Starting Date:<label><input type="date" id="startDate" name="startDate"
                                         value=""
-                                        min="2020-01-01" max="2021-12-31"></label>
-            Ending Date:<label><input type="date" id="endDate" name="endDate" value=""
-                                      min="2020-01-01" max="2021-12-31"></label>
+                                        min="2015-01-01" max="2021-12-31"></label>
+            Ending Date:<label><input type="date" id="endDate" name="endDate"
+                                      value=""
+                                      min="2015-01-01" max="2021-12-31"></label>
             <br>
             <br>
-            <form action="../orderServlet" method="GET">
-                <input type="submit" name="Get Orders" value="Get Orders">
+            <form action="../orderServlet" method="POST">
+                <input type="submit" name="Narrow Orders" value="Narrow Orders">
             </form>
             <br>
             <br>
@@ -95,18 +96,12 @@
                 <th>Total Cost</th>
             </tr>
 
-            <c:forEach var="saleSummaryList" items="${saleSummaryList}">
+            <c:forEach var="saleList" items="${saleList}">
                 <tr>
-                    <td>${saleSummaryList.OrderId}</td>
-                    <td>${saleSummaryList.totalCost}</td>
+                    <td>${saleList.order_id}</td>
+                    <td>${saleList.total_cost}</td>
                 </tr>
             </c:forEach>
-
-            <%--Sample layout--%>
-            <tr>
-                <td>{saleSummaryList.OrderId}</td>
-                <td>{saleSummaryList.totalCost}</td>
-            </tr>
         </table>
         <br>
         <br>
