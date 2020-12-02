@@ -109,10 +109,10 @@
                         <td>${order.modelNum}</td>
                         <td>${order.serialNum}</td>
                         <td>${order.description}</td>
-                        <td>${order.listPrice}</td>
+                        <td>$${order.listPrice}</td>
                         <td>${order.quantity}</td>
-                        <td>${order.shipping_cost}</td>
-                        <td>${order.exactCost}</td>
+                        <td>$${order.shipping_cost}</td>
+                        <td>$${order.exactCost}</td>
                     </tr>
                     </c:forEach>
                 </table>
@@ -120,7 +120,7 @@
                 <table id="bottomTable">
                     <tr>
                         <td>TAX 6%</td>
-                        <td>int tax = totalExactCost * .06</td>
+                        <td>$ ${param.total * .06}  </td>
                     </tr>
                     <tr>
                         <td>
@@ -130,13 +130,13 @@
                             item.
                             Extra large item have a $100 sur charge - includes Sub Zero
                             Refrigerators,
-                            and any other item tht requires 2 delivery personal)
+                            and any other item that requires 2 delivery personnel)
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>TOTAL</td>
-                        <td>int total = tax + totalExactCoast</td>
+                        <td>$${param.total * 1.06}</td>
                     </tr>
                 </table>
 
@@ -159,35 +159,5 @@
     </p>
 </footer>
 
-<script>
-    const valueFromElement = document.getElementById('quantityInput');
-    const display = document.getElementById('display');
-    valueFromElement.addEventListener('change', updateValue);
-
-    function updateValue(e) {
-        display.textContent = e.target.value;
-    }
-
-    function myCreateFunction() {
-        const table = document.getElementById("topTable");
-        const row = table.insertRow(2);
-        const cell1 = row.insertCell(0);
-        const cell2 = row.insertCell(1);
-        const cell3 = row.insertCell(2);
-        const cell4 = row.insertCell(3);
-        const cell5 = row.insertCell(4);
-        const cell6 = row.insertCell(5);
-        cell1.innerHTML = "product.id";
-        cell2.innerHTML = "product.description";
-        cell3.innerHTML = "";
-        cell4.innerHTML = "product.cost";
-        cell5.innerHTML = "";
-        cell6.innerHTML = "";
-    }
-
-    function myDeleteFunction() {
-        document.getElementById("topTable").deleteRow(0);
-    }
-</script>
 </body>
 </html>

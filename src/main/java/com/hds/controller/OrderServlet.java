@@ -63,6 +63,7 @@ public class OrderServlet extends HttpServlet
 			String state = request.getParameter("first");
 			String zip = request.getParameter("first");
 			String date_ordered = request.getParameter("date_ordered");
+			String total = request.getParameter("total");
 			int orderId = Integer.parseInt(request.getParameter("id"));
 			List<OrderPojo> order;
 			order = configOrderDB.receiptOrderView(orderId);
@@ -76,6 +77,7 @@ public class OrderServlet extends HttpServlet
 			request.setAttribute("zip", zip);
 			request.setAttribute("date_ordered", date_ordered);
 			request.setAttribute("order", order);
+			request.setAttribute("total", total);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/salesReceipt.jsp");
 			rd.forward(request, response);
 		}

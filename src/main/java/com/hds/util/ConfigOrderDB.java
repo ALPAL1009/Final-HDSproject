@@ -202,11 +202,12 @@ public class ConfigOrderDB
 		{
 			session.beginTransaction();
 			String queryString = "SELECT \n" +
-					"    o.CustomerID, c.LastName, c.FirstName, o.OrderID,\n" +
-					"    a.street, a.City, a.State, a.zip, o.DateOrdered\n" +
+					"o.CustomerID, c.LastName, c.FirstName, o.OrderID,\n" +
+					"a.street, a.City, a.State, a.zip,\n" +
+					"o.DateOrdered, o.TotalCost\n" +
 					"FROM hds.order o\n" +
 					"JOIN hds.customer c ON o.CustomerID = c.CustomerID\n" +
-					"Join hds.address a  on c.AddressID = a.AddressID;";
+					"JOIN hds.address a ON c.AddressID = a.AddressID;";
 
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
@@ -222,6 +223,7 @@ public class ConfigOrderDB
 				order.setState(row[6].toString());
 				order.setZip(Integer.parseInt(row[7].toString()));
 				order.setDate_ordered(LocalDate.parse(row[8].toString()));
+				order.setTotal_cost(Integer.parseInt(row[9].toString()));
 				orderList.add(order);
 			}
 

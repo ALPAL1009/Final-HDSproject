@@ -110,6 +110,8 @@
                                    value="<c:out value='${orderList.date_ordered}' />"/>
                             <input type="hidden" name="id"
                                    value="<c:out value='${orderList.order_id}' />"/>
+                            <input type="hidden" name="total"
+                                   value="<c:out value='${orderList.total_cost}' />"/>
                             <input type="submit" name="Get Order" value="Get Order">
                         </form>
                     </td>
