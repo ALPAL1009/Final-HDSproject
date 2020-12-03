@@ -1,5 +1,6 @@
 package com.hds.util;
 
+import com.hds.model.CustomerPojo;
 import com.hds.model.JobsForBidPojo;
 import com.hds.model.OrderPojo;
 import com.hds.model.ProductPojo;
@@ -61,7 +62,7 @@ public class ConfigJobForBidDB
 	}
 
 	//________________________________
-	//	Order Section
+	//	Jobs for Bid Section
 	//________________________________
 	public List jobForBidViewDB()
 	{
@@ -140,7 +141,7 @@ public class ConfigJobForBidDB
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-			String queryString = "SELECT max(order.OrderID)FROM hds.order";
+			String queryString = "SELECT max(jobsforbid.JobBidID)FROM hds.jobsforbid";
 			List customerIDResult = session.createSQLQuery(queryString).list();
 			order_id = Integer.parseInt(customerIDResult.get(0).toString()) + 1;
 
@@ -155,8 +156,27 @@ public class ConfigJobForBidDB
 		return order_id;
 	}
 
-	public void deleteBid(int productId)
+	public void deleteBid(int delete_job_bid_id)
 	{
+		Transaction transaction = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			transaction = session.beginTransaction();
+
+			JobsForBidPojo jobsForBidPojo = session.get(JobsForBidPojo.class, delete_job_bid_id);
+			if(jobsForBidPojo != null)
+			{
+				session.delete(jobsForBidPojo);
+			}
+			transaction.commit();
+		}catch(Exception e)
+		{
+			if(transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
 
 	}
 }

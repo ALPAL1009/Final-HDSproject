@@ -33,6 +33,18 @@ public class JobsForBidPojo {
 
     private int zip;
 
+    public JobsForBidPojo()
+    {
+    }
+
+    public JobsForBidPojo(int job_bid_id, String description, double bid_amount, LocalDate date_open, LocalDate date_closed)
+    {
+        this.job_bid_id = job_bid_id;
+        this.description = description;
+        this.bid_amount = bid_amount;
+        this.date_open = date_open;
+        this.date_closed = date_closed;
+    }
 
     // Getter Setter methods
 

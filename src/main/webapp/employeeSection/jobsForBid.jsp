@@ -85,12 +85,12 @@
                 <th></th>
             </tr>
             <tr>
-                <td><label><input type="text" name="bidId" value=""/></label></td>
-                <td><label><input type="text" name="bid.description" value=""/></label>
+                <td></td>
+                <td><label><input type="text" name="new_description" value=""/></label>
                 </td>
-                <td><label><input type="text" name="bid.bidAmount" value=""/></label></td>
-                <td><label><input type="text" name="bid.dateOpen" value=""/></label></td>
-                <td><label><input type="text" name="bid.dateClosed" value=""/></label>
+                <td><label><input type="text" name="new_bidAmount" value=""/></label></td>
+                <td><label><input type="text" name="new_dateOpen" value=""/></label></td>
+                <td><label><input type="text" name="new_dateClosed" value=""/></label>
                 </td>
                 <td>
                     <form action="../jobsForBidServlet" method="GET">

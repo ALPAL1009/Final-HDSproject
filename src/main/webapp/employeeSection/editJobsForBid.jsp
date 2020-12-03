@@ -86,12 +86,12 @@
             </tr>
             <c:forEach var="bidList" items="${bidList}">
             <tr>
-                <td><label><input type="text" name="bidId" value="${bidList.job_bid_id}"/></label></td>
-                <td><label><input type="text" name="bid.description" value="${bidList.description}"/></label>
+                <td>${bidList.job_bid_id}</td>
+                <td><label><input type="text" name="update_description" value="${bidList.description}"/></label>
                 </td>
-                <td><label><input type="text" name="bid.bidAmount" value="${bidList.bid_amount}"/></label></td>
-                <td><label><input type="text" name="bid.dateOpen" value="${bidList.date_open}"/></label></td>
-                <td><label><input type="text" name="bid.dateClosed" value="${bidList.date_closed}"/></label>
+                <td><label><input type="text" name="update_bidAmount" value="${bidList.bid_amount}"/></label></td>
+                <td><label><input type="text" name="update_dateOpen" value="${bidList.date_open}"/></label></td>
+                <td><label><input type="text" name="update_dateClosed" value="${bidList.date_closed}"/></label>
                 </td>
                 <td>
                     <form action="../jobsForBidServlet" method="GET">
