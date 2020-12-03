@@ -84,36 +84,37 @@
                 <th>Date Closed</th>
                 <th></th>
             </tr>
+            <c:forEach var="bidList" items="${bidList}">
             <tr>
-                <td><label><input type="text" name="bidId" value=""/></label></td>
-                <td><label><input type="text" name="bid.description" value=""/></label>
+                <td><label><input type="text" name="bidId" value="${bidList.job_bid_id}"/></label></td>
+                <td><label><input type="text" name="bid.description" value="${bidList.description}"/></label>
                 </td>
-                <td><label><input type="text" name="bid.bidAmount" value=""/></label></td>
-                <td><label><input type="text" name="bid.dateOpen" value=""/></label></td>
-                <td><label><input type="text" name="bid.dateClosed" value=""/></label>
+                <td><label><input type="text" name="bid.bidAmount" value="${bidList.bid_amount}"/></label></td>
+                <td><label><input type="text" name="bid.dateOpen" value="${bidList.date_open}"/></label></td>
+                <td><label><input type="text" name="bid.dateClosed" value="${bidList.date_closed}"/></label>
                 </td>
                 <td>
                     <form action="../jobsForBidServlet" method="GET">
-                        <input type="submit" name="Add New Job Bid"
-                               value="Add New Job Bid">
+                        <input type="submit" name="Update Bid"
+                               value="Update Bid">
                     </form>
                 </td>
             </tr>
-            <c:forEach var="bidList" items="${bidList}">
-            <tr>
-                <td>${bidList.job_bid_id}</td>
-                <td>${bidList.description}</td>
-                <td>${bidList.bid_amount}</td>
-                <td>${bidList.date_open}</td>
-                <td>${bidList.date_closed}</td>
-                <td>
-                    <form action="../jobsForBidServlet" method="POST">
-                        <input type="hidden" name="id"
-                               value="<c:out value='${bidList.job_bid_id}' />"/>
-                        <input type="submit" name="Edit" value="Edit">
-                    </form>
-                </td>
-            </tr>
+
+                <tr>
+                    <td>${bidList.job_bid_id}</td>
+                    <td>${bidList.description}</td>
+                    <td>${bidList.bid_amount}</td>
+                    <td>${bidList.date_open}</td>
+                    <td>${bidList.date_closed}</td>
+                    <td>
+                        <form action="../jobsForBidServlet" method="POST">
+                            <input type="hidden" name="id"
+                                   value="<c:out value='${bidList.job_bid_id}' />"/>
+                            <input type="submit" name="Delete" value="Delete">
+                        </form>
+                    </td>
+                </tr>
             </c:forEach>
         </table>
 

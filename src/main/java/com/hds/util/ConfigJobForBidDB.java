@@ -70,7 +70,7 @@ public class ConfigJobForBidDB
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-			String queryString = "";
+			String queryString = "SELECT * FROM hds.jobsforbid;";
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
 			for(Object[] row : rows)
@@ -80,7 +80,8 @@ public class ConfigJobForBidDB
 				jobBid.setDescription(row[1].toString());
 				jobBid.setBid_amount(Double.parseDouble(row[2].toString()));
 				jobBid.setDate_open(LocalDate.parse(row[3].toString()));
-				jobBid.setDate_closed(LocalDate.parse(row[4].toString()));
+				if(row[4] != null)
+					jobBid.setDate_closed(LocalDate.parse(row[4].toString()));
 
 				bidList.add(jobBid);
 			}
@@ -103,8 +104,9 @@ public class ConfigJobForBidDB
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			session.beginTransaction();
-			String queryString = " " + jobBidId;
-
+			String queryString = "SELECT *\n" +
+					"FROM hds.jobsforbid\n" +
+					"where jobsforbid.JobBidID = " + jobBidId;
 			SQLQuery query = session.createSQLQuery(queryString);
 			List<Object[]> rows = query.list();
 			for(Object[] row : rows)
@@ -114,7 +116,8 @@ public class ConfigJobForBidDB
 				jobBid.setDescription(row[1].toString());
 				jobBid.setBid_amount(Double.parseDouble(row[2].toString()));
 				jobBid.setDate_open(LocalDate.parse(row[3].toString()));
-				jobBid.setDate_closed(LocalDate.parse(row[4].toString()));
+				if(row[4] != null)
+					jobBid.setDate_closed(LocalDate.parse(row[4].toString()));
 
 				bidList.add(jobBid);
 			}

@@ -59,8 +59,12 @@ public class JobsForBidServlet extends HttpServlet
 
 		if(request.getParameter("Update Bid") != null)
 		{
-			//get the Attributes and combine them and add new bid
-			//and return back to bid records with new bid added
+
+
+			List<JobsForBidPojo> bidList;
+			bidList = configJobForBidDB.jobForBidViewDB();
+
+			request.setAttribute("bidList", bidList);
 			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/jobsForBid.jsp");
 			rd.forward(request, response);
 		}
