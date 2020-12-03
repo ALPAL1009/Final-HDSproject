@@ -43,7 +43,7 @@ public class JobsForBidServlet extends HttpServlet
 			bidList = configJobForBidDB.editJobForBidViewDB(jobBidId);
 
 			request.setAttribute("bidList", bidList);
-			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/jobsForBid.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/employeeSection/editJobsForBid.jsp");
 			rd.forward(request, response);
 		}
 	}
