@@ -99,7 +99,7 @@
             <c:forEach var="saleList" items="${saleList}">
                 <tr>
                     <td>${saleList.order_id}</td>
-                    <td>${saleList.total_cost}</td>
+                    <td>$${saleList.total_cost}</td>
                 </tr>
             </c:forEach>
         </table>

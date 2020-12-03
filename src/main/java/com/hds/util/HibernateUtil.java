@@ -29,6 +29,11 @@ public class HibernateUtil {
 
                 // README - update password before running to match user's authentication
                 // Add database
+//                settings.put(Environment.URL, "jdbc:mysql://hds-capstone-group-8-db.mysql.database.azure.com:3306/hds?useSSL=false&requireSSL=false");
+//                // add user
+//                settings.put(Environment.USER, "aeros");
+//                // add password
+//                settings.put(Environment.PASS, "yP9v7UxJ7tU^^");
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/hds");
                 // add user
                 settings.put(Environment.USER, "root");
