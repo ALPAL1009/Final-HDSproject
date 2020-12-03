@@ -71,8 +71,7 @@ public class ConfigProductDB
 			session.beginTransaction();
 			String queryString = "SELECT \n" +
 					"    product.ProductID,\n" +
-					"    productbrand.ProductName,\n" +
-					"    product.CategoryID,\n" +
+					"    productbrand.BrandName,\n" +
 					"    product.InventoryCount,\n" +
 					"    product.ModelNum,\n" +
 					"    product.SerialNum,\n" +
@@ -91,18 +90,17 @@ public class ConfigProductDB
 				ProductPojo product = new ProductPojo();
 				product.setProduct_id(Integer.parseInt(row[0].toString()));
 				product.setBrandName(row[1].toString());
+
 				if(row[2] != null)
-					product.setCategoryName(row[2].toString());
-				if(row[3] != null)
-					product.setInventory_count(Integer.parseInt(row[3].toString()));
-				product.setModel_num(row[4].toString());
-				product.setSerial_num(Integer.parseInt(row[5].toString()));
-				product.setDescription(row[6].toString());
-				product.setCost(Double.parseDouble(row[7].toString()));
-				product.setList_price(Double.parseDouble(row[8].toString()));
-				if(row[9] != null)
-					product.setDeliveryCost(Integer.parseInt(row[9].toString()));
-				product.setIs_active(row[10].toString());
+					product.setInventory_count(Integer.parseInt(row[2].toString()));
+				product.setModel_num(row[3].toString());
+				product.setSerial_num(Integer.parseInt(row[4].toString()));
+				product.setDescription(row[5].toString());
+				product.setCost(Double.parseDouble(row[6].toString()));
+				product.setList_price(Double.parseDouble(row[7].toString()));
+				if(row[8] != null)
+					product.setDeliveryCost(Integer.parseInt(row[8].toString()));
+				product.setIs_active(row[9].toString());
 				productList.add(product);
 			}
 
