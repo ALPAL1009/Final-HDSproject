@@ -1,10 +1,9 @@
 /*---------------Employee Section---------------*/
-.employeeSection {
+.employeeSection{
     background: url("../images/bg1.jpg");
     background-size: cover;
 
 }
-
 .employeeSection-content {
     margin-left: 275px;
 }
@@ -13,19 +12,21 @@
     margin-left: 275px;
 }
 
-/*-----Customer Records-----*/
+/*--------------Customer Records------------------------*/
 .customerRecords {
-    /*      Added (11/28)  */
     background-image: url("../images/bg1.jpg");
-    height: 110vh;
+    height: 135vh;
     background-size: cover;
 }
 
 .customerRecords-content {
-    /*      Added (11/28)  */
-    height: 50vh;
+    border: 3px solid;
+    height: 70vh;
     overflow: scroll;
-    margin-left: 275px;
+
+    margin-left: 12cm;
+    margin-right: 3cm;
+
     background-image: url("../images/bg1.jpg");
     background-repeat: repeat;
     background-position: center;
@@ -39,7 +40,7 @@
 }
 
 
-/*-----Employee Records-----*/
+/*---------------Employee Records-------------------------*/
 .employeeRecords {
     /*      Added (11/28)    */
     background-image: url("../images/bg1.jpg");
@@ -47,7 +48,7 @@
     background-size: cover;
 }
 
-.employeeRecords-content {
+.employeeRecords-content{
     /*      Added (11/28)  */
     height: 50vh;
     overflow: scroll;
@@ -63,7 +64,7 @@
     position: center;
 }
 
-/*-----Inventory-----*/
+/*------------------Inventory-----------------------*/
 .inventory {
     /*       Added (11/28)   */
     background-image: url("../images/bg1.jpg");
@@ -106,7 +107,7 @@
     background-attachment: fixed;
 }
 
-/*---OutStanding Balance----*/
+/*---Monthly Statement Form----*/
 .monthlyStatement {
     /*       Added (11/28)   */
     background-image: url("../images/bg1.jpg");
@@ -114,12 +115,12 @@
     background-size: cover;
 }
 
-.monthlyStatement-container {
+.monthlyStatement-container{
     /*       Update (11/30)   */
-    margin-left: 275px;
+    margin-left: 375px;
 }
 
-#monthlyStatement\ topAddress {
+#monthlyStatement\ topAddress{
     text-align: center;
 }
 
@@ -134,7 +135,7 @@ table, td, th {
 
 }
 
-#image {
+#image{
     width: 100px;
 }
 
@@ -142,26 +143,24 @@ h1 {
     text-align: center;
 }
 
-#monthlyStatement\ bottom {
+#monthlyStatement\ bottom{
     text-align: right;
     width: 75%;
 }
 
-#monthlyStatement\ finePrint {
+#monthlyStatement\ finePrint{
     font-size: smaller;
     text-align: center;
 }
 
-/*-----Order Records-----*/
-.orderRecords {
-    /*      Added (11/28)    */
+/*----------------Order Records--------------*/
+.orderRecords{
     background-image: url("../images/bg1.jpg");
     height: 110vh;
     background-size: cover;
 }
 
-.orderRecords-content {
-    /*       Added (11/28)   */
+.orderRecords-content{
     height: 50vh;
     overflow: scroll;
     margin-left: 275px;
@@ -171,16 +170,30 @@ h1 {
     background-attachment: fixed;
 }
 
-/*-----Sale Receipt-----*/
-.saleReceipt {
+/*------------------------Sale Receipt----------------------------------*/
+.saleReceipt{
     /*      Added (11/28)    */
     background-image: url("../images/bg1.jpg");
-    height: 110vh;
+    height: 150vh;
     background-size: cover;
 }
 
-.saleReceipt-container {
-    margin-left: 275px;
+.saleReceipt-container{
+    /*       Added (11/28)   */
+
+
+    height: 110vh;
+    /*overflow: scroll;*/
+    margin-left: 425px;
+    /*background-image: url("../images/bg1.jpg");*/
+    /*background-repeat: repeat;*/
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+}
+
+.saleReceipt-container h1 {
+    font-size: 40px;
+    text-align: center;
 }
 
 table {
@@ -191,6 +204,7 @@ table {
 table, td, th {
     border: 1px solid black;
     padding: 5px;
+
 }
 
 th {
@@ -201,15 +215,15 @@ th {
     width: 40px;
 }
 
-/*-----Sale Summary-----*/
-.saleSummary {
+/*---------------Sale Summary-------------------*/
+.saleSummary{
     /*      Added (11/28)    */
     background-image: url("../images/bg1.jpg");
     height: 110vh;
     background-size: cover;
 }
 
-.saleSummary-content {
+.saleSummary-content{
     /*       Added (11/28)   */
     height: 50vh;
     overflow: scroll;
@@ -220,24 +234,25 @@ th {
     background-attachment: fixed;
 }
 
-#saleSummaryTotal {
+#saleSummaryTotal{
     border-collapse: collapse;
     border: 2px solid black;
 }
 
-#saleSummaryTotal tr {
+#saleSummaryTotal tr{
 
 }
 
-#saleSummaryTotal td {
+#saleSummaryTotal td{
     width: 50%;
     text-align: right;
 }
 
-/*----------------------Looping Table----------------------*/
+/*----------------------Looping (Record) Table----------------------*/
 #recordTable {
     /*border-style: solid;*/
-    border-collapse: collapse;
+    /*added*/
+    /*border-collapse: collapse;*/
 }
 
 #recordTable tr {

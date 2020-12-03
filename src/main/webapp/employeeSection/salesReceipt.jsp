@@ -62,7 +62,7 @@
             <!--    Gallery Images      -->
             <li><a href="../html-gallery/gallery.html">Our Work</a></li>
 
-            <li><a href="../employeeSection/employeeSection.html">Employee Log in</a>
+            <li><a href="../employeeSection/employeeSection.html">Employee Login</a>
 
             <li><a href="../html-faq/faq.html">FAQs</a>
 

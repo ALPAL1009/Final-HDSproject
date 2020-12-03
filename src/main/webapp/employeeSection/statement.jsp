@@ -64,7 +64,7 @@
             <!--    Gallery Images      -->
             <li><a href="../html-gallery/gallery.html">Our Work</a></li>
 
-            <li><a href="../employeeSection/employeeSection.html">Employee Log in</a>
+            <li><a href="../employeeSection/employeeSection.html">Employee Login</a>
 
             <li><a href="../html-faq/faq.html">FAQs</a>
 
@@ -128,13 +128,14 @@
             </div>
             <br>
             <div id="statement finePrint">
-                *Terms & Conditions
+                <h4><br><br><br><br><br><br><b>Terms & Conditions</b><br><br></h4>
+
                 This statement must be paid on or before the 15th of the current month.
-                Any bills not paid by the 15th will incur a $100 late payment charge.
+                Any bills not paid by the 15th will incur a $100 late payment charge. <br>
                 Invoices must contain the purchase order number and include complete
-                supporting information required by HDS in order to be considered valid.
+                supporting information required by HDS in order to be considered valid. <br>
                 Should HDS specify such changes and apply different terms and conditions,
-                those terms and conditions will override the purchase order terms and
+                those terms and conditions will override the purchase order terms <br> and
                 conditions will apply instead of these.
 
             </div>
